@@ -2,8 +2,6 @@ package com.yastart.papaya.dialogs;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,14 +40,7 @@ public class DialogBookRequest extends DialogFragment implements View.OnClickLis
     }
 
     @Override
-    public void OnClick(View view){
-        switch (view.getId()) {
-            case R.id.dialogDecline:
+    public void onClick(View v) {
 
-                break;
-            case R.id.dialogAccept:
-
-                break;
-        }
     }
 }
