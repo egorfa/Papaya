@@ -3,13 +3,13 @@ package com.yastart.papaya.activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.R;
-import com.yastart.papaya.fragments.PageFragment;
+import com.yastart.papaya.fragments.SearchFragment;
 
 
 public class MainActivity extends BaseActivity {
@@ -49,15 +49,27 @@ public class MainActivity extends BaseActivity {
         return false;
     }
 
-    private class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
+    private class CustomFragmentPagerAdapter extends FragmentStatePagerAdapter {
+            FragmentManager fm;
 
         public CustomFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
+            this.fm = fm;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return PageFragment.newInstance(position);
+
+            switch(position){
+                case 0:
+                    return SearchFragment.newInstance();
+                case 1:
+                    return SearchFragment.newInstance();
+                case 2:
+                    return SearchFragment.newInstance();
+                default:
+                    return null;
+            }
         }
 
         @Override
@@ -76,7 +88,7 @@ public class MainActivity extends BaseActivity {
                     return "Профиль";
             }
 
-            return "Wrong Channel";
+            return "Wrong Title";
         }
 
     }
