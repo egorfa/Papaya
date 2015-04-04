@@ -4,6 +4,8 @@
 
     <dimen name="default_padding">16dp</dimen>
 
+    <dimen name="my_books_grid_margin">4dp</dimen>
+
     <dimen name="user_pic_size">64dp</dimen>
     <dimen name="item_text_margin">16dp</dimen>
 
@@ -11,5 +13,5 @@
     <dimen name="text_size_medium">18sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
     
-    <dimen name="grid_image_height">128dp</dimen>
+    <dimen name="grid_image_height">192dp</dimen>
 </resources>
