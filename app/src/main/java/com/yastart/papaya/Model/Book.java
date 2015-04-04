@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by makazone on 04.04.15.
@@ -22,6 +23,8 @@ public class Book {
     private String description;
     private String title;
     private String authors;
+
+    private Date createdAt;
 
     private String coverUrl;
 
@@ -59,6 +62,7 @@ public class Book {
     public static void getBooksForCity(String city, final GetListHandler<Book> handler) {
         RequestParams params = new RequestParams();
         params.put("city", city);
+        params.put("order", "-created");
 
         Server.get("books", params,  new JsonHttpResponseHandler() {
             @Override
@@ -93,6 +97,7 @@ public class Book {
     public static void getBooksForUser(User user, final GetListHandler<Book> handler) {
         RequestParams params = new RequestParams();
         params.put("owner", user.getId());
+        params.put("order", "-created");
 
         Server.get("books", params,  new JsonHttpResponseHandler() {
             @Override
@@ -134,6 +139,8 @@ public class Book {
             b.title = jsonObject.getString("title");
             b.ownerID = jsonObject.getString("owner");
             b.coverUrl = jsonObject.getString("photo");
+            b.description = jsonObject.getString("description");
+            b.authors = jsonObject.getString("author");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
