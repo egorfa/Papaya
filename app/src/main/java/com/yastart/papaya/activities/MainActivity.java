@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.R;
+import com.yastart.papaya.fragments.PageFragment;
 
 
 public class MainActivity extends BaseActivity {
