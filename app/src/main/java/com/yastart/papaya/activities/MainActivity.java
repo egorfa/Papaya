@@ -40,14 +40,15 @@ public class MainActivity extends BaseActivity {
         Book.getBooksForUser(u, new GetHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
+                Log.d("DB TEST", ""+data.size());
                 for (int i = 0; i < data.size(); i++) {
-                    Log.d("TAG", "------------------->" + data.get(i));
+                    Log.d("DB TEST", "----------------- " + data.get(i));
                 }
             }
 
             @Override
             public void error(String responseError) {
-
+                Log.d("DB TEST", responseError);
             }
         });
     }
