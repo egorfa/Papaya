@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
+import com.yastart.papaya.fragments.MyProfileFragment;
 import com.yastart.papaya.fragments.SearchFragment;
 
 
@@ -67,7 +68,7 @@ public class MainActivity extends BaseActivity {
                 case 1:
                     return MyBooksFragment.newInstance();
                 case 2:
-                    return SearchFragment.newInstance();
+                    return MyProfileFragment.newInstance();
                 default:
                     return null;
             }
