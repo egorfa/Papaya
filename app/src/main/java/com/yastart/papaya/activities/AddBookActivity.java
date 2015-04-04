@@ -1,9 +1,12 @@
 package com.yastart.papaya.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +20,16 @@ import com.kbeanie.imagechooser.api.ChooserType;
 import com.kbeanie.imagechooser.api.ChosenImage;
 import com.kbeanie.imagechooser.api.ImageChooserListener;
 import com.kbeanie.imagechooser.api.ImageChooserManager;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.SaveCallback;
+import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
 import com.yastart.papaya.dialogs.PhotoPickerDialog;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 
 public class AddBookActivity extends BaseActivity implements View.OnClickListener,
         PhotoPickerDialog.TakePhotoListener,
@@ -30,6 +39,13 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
     private String filePath;
     private int chooserType;
     private ImageView bookPhoto;
+    private boolean isImageUploaded = false;
+
+    private String URL;
+    private String titleText;
+    private String authorText;
+    private String descriptionText;
+    private Book.bookCondition condition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,11 +168,45 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
                 if (image != null) {
                     filePath = image.getFilePathOriginal();
                     bookPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    bookPhoto.setImageURI(Uri.parse(new File(image.getFilePathOriginal()).toString()));
-                    // TODO отправлять в хранилище
+                    File file = new File(image.getFilePathOriginal());
+                    bookPhoto.setImageURI(Uri.parse(file.toString()));
+                    byte[] imageBytes = getImageBytes(file);
+                    if (imageBytes != null) {
+                        final ParseFile photo = new ParseFile("book_cover.jpg", imageBytes);
+                        photo.saveInBackground(new SaveCallback() {
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    isImageUploaded = true;
+                                    Log.d("TAG", "---------------->" + photo.getUrl());
+                                    URL = photo.getUrl();
+                                } else {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         });
+    }
+
+    private byte[] getImageBytes(File file) {
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions);
+        byte[] imageBytes = null;
+        ByteArrayOutputStream stream = null;
+        try {
+            stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            imageBytes = stream.toByteArray();
+        } finally {
+            if (stream != null) try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return imageBytes;
     }
 
     @Override

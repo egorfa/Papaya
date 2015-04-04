@@ -32,6 +32,29 @@ public class Book {
 
     private int condition;
 
+    /*
+        Book newBook = new Book();
+        newBook.setAuthors("Makar");
+        newBook.setTitle("My super new book");
+        newBook.setDescription("Rather elaborate description");
+        newBook.setCity("Moscow");
+        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
+        newBook.setCondition(Book.EXCELLENT);
+        newBook.setOwnerID(u.getId());
+
+        newBook.saveBook(new VoidHandler() {
+            @Override
+            public void done() {
+                Log.d("DB TEST", "BOOK HAS BEEN SAVED");
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", "BOOK HASN'T SAVED " + responseError);
+            }
+        });
+     */
+
     public void saveBook(final VoidHandler handler) {
         RequestParams params = new RequestParams();
         params.put("title", ownerID);
