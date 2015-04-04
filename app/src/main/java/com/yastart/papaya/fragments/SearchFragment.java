@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
+import com.yastart.papaya.activities.BookActivity;
 import com.yastart.papaya.activities.SearchActivity;
 import com.yastart.papaya.adapters.DividerItemDecoration;
 import com.yastart.papaya.adapters.ProfileBooksListAdapter;
@@ -66,6 +67,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
+        Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
+        startActivity(intent);
     }
 }

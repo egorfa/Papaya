@@ -42,7 +42,7 @@ public class ProfileBooksListAdapter extends RecyclerView.Adapter<BooksGridViewH
         //viewHolder.author.setText(...);
         //viewHolder.textBackground ...
 
-        viewHolder.bookImage.setImageResource(R.mipmap.ic_launcher);
+        viewHolder.bookImage.setImageResource(R.drawable.ic_launcher);
         viewHolder.bookName.setText(books.get(i).getTitle());
         viewHolder.author.setText(books.get(i).getAuthors());
     }

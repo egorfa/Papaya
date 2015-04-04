@@ -16,6 +16,7 @@ import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
+import com.yastart.papaya.fragments.MyProfileFragment;
 import com.yastart.papaya.fragments.SearchFragment;
 
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class MainActivity extends BaseActivity {
                 case 1:
                     return MyBooksFragment.newInstance();
                 case 2:
-                    return SearchFragment.newInstance();
+                    return MyProfileFragment.newInstance();
                 default:
                     return null;
             }
