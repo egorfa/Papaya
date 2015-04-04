@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.MyBooksGridAdapter;
@@ -15,6 +17,9 @@ import com.yastart.papaya.adapters.MyBooksGridAdapter;
 import java.util.ArrayList;
 
 public class MyBooksFragment extends BaseFragment implements View.OnClickListener {
+
+    private RecyclerView grid;
+    private ArrayList<Book> books;
 
     public static MyBooksFragment newInstance() {
         MyBooksFragment pageFragment = new MyBooksFragment();
@@ -26,12 +31,16 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         final View rootView = inflater.inflate(R.layout.fragment_my_books, container, false);
         mContext = rootView.getContext();
 
-        final RecyclerView grid = (RecyclerView) rootView.findViewById(R.id.my_books_grid);
+        grid = (RecyclerView) rootView.findViewById(R.id.my_books_grid);
         grid.setHasFixedSize(true);
         grid.setItemAnimator(new DefaultItemAnimator());
         grid.setLayoutManager(new GridLayoutManager(mContext, 2));
 
-        ArrayList<Book> books = null; // TODO get books
+        final FloatingActionButton addBookButton = (FloatingActionButton) rootView.findViewById(R.id.add_book_button);
+        addBookButton.setOnClickListener(this);
+        addBookButton.attachToRecyclerView(grid);
+
+        books = null; // TODO get books
 
         grid.setAdapter(new MyBooksGridAdapter(mContext, books, this));
 
@@ -40,6 +49,15 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.book_cell:
+                final int position = grid.getChildLayoutPosition(v);
+                Toast.makeText(mContext, "Pressed " + position, Toast.LENGTH_SHORT).show();
+                // TODO startBookActivity
+                break;
+            case R.id.add_book_button:
+                Toast.makeText(mContext, "Pressed", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

@@ -1,11 +1,15 @@
 package com.yastart.papaya.Model;
 
+import org.apache.http.Header;
+import org.json.*;
+import com.loopj.android.http.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 /**
  * Created by makazone on 04.04.15.
@@ -44,12 +48,38 @@ public class Book {
 
     /**
      *
-     * @param u
+     * @param user
      * @return
      */
-    public static ArrayList<Book> getBooksForUser(User u) {
+    public static void getBooksForUser(User user, final GetHandler<Book> handler) {
         ArrayList<Book> result = new ArrayList<Book>();
-        return result;
+
+        RequestParams params = new RequestParams();
+        params.put("owner", user.getId());
+
+        Server.get("books", params,  new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                try {
+                    onSuccess(statusCode, headers, response.getJSONArray("items"));
+                } catch (JSONException e) {
+                    onFailure(statusCode, headers, e.getMessage(), e);
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray booksJSON) {
+                ArrayList<Book> books = fromJson(booksJSON);
+                handler.done(books);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+
+        });
     }
 
     // Creating objects from JSON
@@ -156,5 +186,10 @@ public class Book {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Book " + this.id + " title: " + this.title;
     }
 }
