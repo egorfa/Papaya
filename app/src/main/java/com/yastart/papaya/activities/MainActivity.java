@@ -11,13 +11,10 @@ import android.util.Log;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
-import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.SearchFragment;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends BaseActivity {
