@@ -4,4 +4,21 @@
     <string name="add_book">Добавить книгу</string>
     <string name="last">Последние</string>
     <string name="my_books">Мои книги</string>
+
+    <string name="book_name">Название</string>
+    <string name="author">Автор</string>
+    <string name="condition">Состояние</string>
+    <string name="description">Описание</string>
+
+    <string-array name="conditions">
+        <item>Как новая</item>
+        <item>Нормальная</item>
+        <item>Потрёпанная</item>
+    </string-array>
+
+    <string name="book_cover">Фото обложки</string>
+    <string-array name="chose_photo">
+        <item>Сфотографировать</item>
+        <item>Выбрать из галереи</item>
+    </string-array>
 </resources>
