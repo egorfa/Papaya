@@ -82,14 +82,14 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Поиск";
+                    return getString(R.string.last);
                 case 1:
-                    return "Мои книги";
+                    return getString(R.string.my_books);
                 case 2:
-                    return "Профиль";
+                    return getString(R.string.profile);
+                default:
+                    return "";
             }
-
-            return "Wrong Title";
         }
 
     }

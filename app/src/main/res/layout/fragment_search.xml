@@ -38,6 +38,6 @@
         android:id="@+id/listView1"
         android:layout_below="@+id/rlSearch"
         android:layout_alignParentBottom="true"
-        android:background="#eee" />
+        android:background="@color/gray_background"/>
 
 </RelativeLayout>
