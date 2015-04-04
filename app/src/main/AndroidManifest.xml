@@ -36,6 +36,12 @@
             android:label="@string/search_book"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".activities.BookActivity"
+            android:label="@string/book_activity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

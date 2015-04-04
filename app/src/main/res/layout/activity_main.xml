@@ -15,6 +15,7 @@
         android:layout_gravity="top"
         android:textColor="@color/white"
         android:background="@color/primary"
+        android:textSize="10sp"
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"
         app:pstsIndicatorHeight="4dp"

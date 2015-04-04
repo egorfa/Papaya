@@ -1,32 +1,29 @@
 package com.yastart.papaya.activities;
 
 import android.os.Bundle;
-import android.widget.EditText;
 
 import com.yastart.papaya.R;
 
 /**
- * Created by 123 on 04.04.2015.
+ * Created by 123 on 05.04.2015.
  */
-public class SearchActivity extends BaseActivity {
-
-    EditText editText;
+public class BookActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        editText = (EditText)findViewById(R.id.editSearch);
+
     }
 
     @Override
     protected int getLayoutResourceIdentifier() {
-        return R.layout.activity_search;
+        return R.layout.activity_book;
     }
 
     @Override
     protected String getTitleToolBar() {
-        return getString(R.string.search_book);
+        return getString(R.string.book_activity);
     }
 
     @Override
@@ -36,6 +33,6 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     protected boolean getHomeButtonEnabled() {
-        return true;
+        return false;
     }
 }
