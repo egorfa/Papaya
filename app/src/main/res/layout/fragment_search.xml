@@ -20,17 +20,20 @@
             android:layout_alignTop="@+id/textSearch"/>
 
         <EditText
-            android:id="@+id/textSearch"
-            android:drawableLeft="@drawable/ic_find_book"
             android:layout_width="match_parent"
-            android:editable="false"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:gravity="center"
             android:layout_centerVertical="true"
+            android:hint="@string/find_book"
+            android:id="@+id/textSearch"
             android:background="@color/white"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:gravity="center"
+            android:focusable="false"
+            android:drawableLeft="@drawable/ic_find_book"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"/>
 
     </RelativeLayout>
 
