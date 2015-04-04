@@ -7,4 +7,5 @@
     <string name="add_book">Добавить книгу</string>
     <string name="last">Последние</string>
     <string name="my_books">Мои книги</string>
+    <string name="requests">Обмены</string>
 </resources>
