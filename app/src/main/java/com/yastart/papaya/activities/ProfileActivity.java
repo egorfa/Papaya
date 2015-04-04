@@ -40,7 +40,9 @@ public class ProfileActivity extends BaseActivity {
 
 
         ArrayList<Book> Books = new ArrayList<>();
-        Book book = new Book();
+        Book book = new Book();//
+
+
     }
 
 }
