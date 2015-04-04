@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
@@ -20,14 +21,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
-    ViewPager pager;
-    PagerAdapter pagerAdapter;
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pager = (ViewPager)findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
 
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void done(ArrayList<Book> data) {
                 for (int i = 0; i < data.size(); i++) {
-                    System.out.println(data.get(i));
+                    Log.d("TAG", "------------------->" + data.get(i));
                 }
             }
 
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private class CustomFragmentPagerAdapter extends FragmentStatePagerAdapter {
-            FragmentManager fm;
+        FragmentManager fm;
 
         public CustomFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
 
-            switch(position){
+            switch (position) {
                 case 0:
                     return SearchFragment.newInstance();
                 case 1:
@@ -101,7 +102,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return "Поиск";
                 case 1:

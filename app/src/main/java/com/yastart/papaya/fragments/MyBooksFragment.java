@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetHandler;
+import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.MyBooksGridAdapter;
 
@@ -40,9 +43,21 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         addBookButton.setOnClickListener(this);
         addBookButton.attachToRecyclerView(grid);
 
-        books = null; // TODO get books
+        User user = new User();
+        user.setId("102363055574899025750");
+        Book.getBooksForUser(user, new GetHandler<Book>() {
+            @Override
+            public void done(ArrayList<Book> data) {
+                Log.d("TAG", "" + data.size());
+                books = data;
+                grid.setAdapter(new MyBooksGridAdapter(mContext, books, MyBooksFragment.this));
+            }
 
-        grid.setAdapter(new MyBooksGridAdapter(mContext, books, this));
+            @Override
+            public void error(String responseError) {
+                Log.d("ERROR", responseError);
+            }
+        });
 
         return rootView;
     }
@@ -57,6 +72,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.add_book_button:
                 Toast.makeText(mContext, "Pressed", Toast.LENGTH_SHORT).show();
+                // TODO startAddBookActivity
                 break;
         }
     }
