@@ -1,13 +1,11 @@
 package com.yastart.papaya.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.yastart.papaya.R;
 
-/**
- * Created by 123 on 04.04.2015.
- */
 public class SearchActivity extends BaseActivity {
 
     EditText editText;
@@ -16,7 +14,18 @@ public class SearchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        editText = (EditText)findViewById(R.id.editSearch);
+        editText = (EditText) findViewById(R.id.editSearch);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -26,12 +35,12 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     protected String getTitleToolBar() {
-        return getString(R.string.search_book);
+        return getString(R.string.last);
     }
 
     @Override
     protected boolean getDisplayHomeAsUp() {
-        return false;
+        return true;
     }
 
     @Override

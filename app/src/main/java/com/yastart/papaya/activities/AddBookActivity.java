@@ -24,6 +24,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.SaveCallback;
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.User;
+import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.dialogs.PhotoPickerDialog;
 
@@ -41,26 +43,29 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
     private ImageView bookPhoto;
     private boolean isImageUploaded = false;
 
+    private EditText bookName;
+    private EditText author;
+    private EditText description;
+    private Spinner conditionSpinner;
+
     private String URL;
     private String titleText;
     private String authorText;
     private String descriptionText;
-    private Book.bookCondition condition;
+    private int condition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final EditText bookName = (EditText) findViewById(R.id.book_name);
-
-        final EditText author = (EditText) findViewById(R.id.author);
-
-        final EditText description = (EditText) findViewById(R.id.description);
+        bookName = (EditText) findViewById(R.id.book_name);
+        author = (EditText) findViewById(R.id.author);
+        description = (EditText) findViewById(R.id.description);
 
         bookPhoto = (ImageView) findViewById(R.id.book_photo);
         bookPhoto.setOnClickListener(this);
 
-        final Spinner conditionSpinner = (Spinner) findViewById(R.id.condition);
+        conditionSpinner = (Spinner) findViewById(R.id.condition);
         String[] data = getResources().getStringArray(R.array.conditions);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,11 +105,52 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
                 finish();
                 return true;
             case R.id.done:
-                Toast.makeText(this, "pressed", Toast.LENGTH_SHORT).show();
+                if (checkFields())
+                    addBook();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addBook() {
+        Book newBook = new Book();
+        newBook.setAuthors(authorText);
+        newBook.setTitle(titleText);
+        newBook.setDescription(descriptionText);
+        newBook.setCity("Moscow");
+        newBook.setCoverUrl(URL);
+        newBook.setCondition(condition);
+        newBook.setOwnerID(User.getCurrentUser().getId());
+        newBook.saveBook(new VoidHandler() {
+            @Override
+            public void done() {
+                // do nothing
+            }
+
+            @Override
+            public void error(String responseError) {
+                Toast.makeText(mContext, R.string.save_error, Toast.LENGTH_LONG).show();
+            }
+        });
+        finish();
+    }
+
+    private boolean checkFields() {
+        titleText = String.valueOf(bookName.getText()).trim();
+        authorText = String.valueOf(author.getText()).trim();
+        descriptionText = String.valueOf(description.getText()).trim();
+        condition = conditionSpinner.getSelectedItemPosition() + 1;
+
+        if (!isImageUploaded) {
+            Toast.makeText(mContext, R.string.image_not_uploaded, Toast.LENGTH_LONG).show();
+            return false;
+        } else if (titleText.isEmpty() || authorText.isEmpty() || descriptionText.isEmpty()) {
+            Toast.makeText(mContext, R.string.all_fields_required, Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
