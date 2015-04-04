@@ -63,6 +63,7 @@ public class Book {
         params.put("author", authors);
         params.put("condition", condition);
         params.put("owner", ownerID);
+        params.put("city", city);
 
         Server.post("book", params, new JsonHttpResponseHandler() {
             @Override
@@ -87,6 +88,7 @@ public class Book {
         params.put("author", book.authors);
         params.put("condition", book.condition);
         params.put("owner", book.ownerID);
+        params.put("city", book.city);
 
         Server.post("update", params, new JsonHttpResponseHandler() {
             @Override
@@ -207,6 +209,7 @@ public class Book {
             b.description = jsonObject.getString("description");
             b.authors = jsonObject.getString("author");
             b.condition = jsonObject.getInt("condition");
+            b.city = jsonObject.getString("city");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -232,9 +235,9 @@ public class Book {
                 continue;
             }
 
-            Book business = Book.fromJson(bookJson);
-            if (business != null) {
-                books.add(business);
+            Book book = Book.fromJson(bookJson);
+            if (book != null) {
+                books.add(book);
             }
         }
 

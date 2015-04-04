@@ -45,7 +45,7 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
     private String titleText;
     private String authorText;
     private String descriptionText;
-    private Book.bookCondition condition;
+    private int condition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

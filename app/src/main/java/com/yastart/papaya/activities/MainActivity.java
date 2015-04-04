@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity {
         newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
         newBook.setCondition(Book.EXCELLENT);
         newBook.setOwnerID(u.getId());
+        newBook.setCity("Moscow");
 
         newBook.saveBook(new VoidHandler() {
             @Override

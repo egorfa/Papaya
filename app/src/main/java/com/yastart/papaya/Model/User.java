@@ -1,5 +1,15 @@
 package com.yastart.papaya.Model;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class User {
     private static User currentUser;
 
@@ -9,6 +19,77 @@ public class User {
     private String email;
     private String contacts;
     private String city;
+
+    public static void findUserByID(String id, final GetItemHandler<User> handler) {
+        RequestParams params = new RequestParams();
+
+        Server.get("user/"+id, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                User u = User.fromJson(response);
+                handler.done(u);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+
+        });
+
+    }
+
+    // Creating objects from JSON
+
+    /**
+     * Decodes business json into business model object
+     * @param jsonObject
+     * @return Book object from json
+     */
+    public static User fromJson(JSONObject jsonObject) {
+        User u = new User();
+        // Deserialize json into object fields
+        try {
+            u.id = jsonObject.getString("user_id");
+            u.username = jsonObject.getString("username");
+            u.email = jsonObject.getString("id");
+//            u.contacts = jsonObject.getString("");
+            u.city = jsonObject.getString("city");
+            u.internal_id = jsonObject.getString("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        // Return new object
+        return u;
+    }
+
+//    /**
+//     * Decodes array of business json results into business model objects
+//     * @param jsonArray
+//     * @return
+//     */
+//    public static ArrayList<User> fromJson(JSONArray jsonArray) {
+//        ArrayList<Book> books = new ArrayList<Book>(jsonArray.length());
+//        // Process each result in json array, decode and convert to business object
+//        for (int i=0; i < jsonArray.length(); i++) {
+//            JSONObject bookJson = null;
+//            try {
+//                bookJson = jsonArray.getJSONObject(i);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                continue;
+//            }
+//
+//            Book book = Book.fromJson(bookJson);
+//            if (book != null) {
+//                books.add(book);
+//            }
+//        }
+//
+//        return books;
+//    }
+
 
     // Getters & Setters
 
