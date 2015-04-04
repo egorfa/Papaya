@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
@@ -39,14 +40,15 @@ public class MainActivity extends BaseActivity {
         Book.getBooksForUser(u, new GetHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
+                Log.d("DB TEST", ""+data.size());
                 for (int i = 0; i < data.size(); i++) {
-                    System.out.println(data.get(i));
+                    Log.d("DB TEST", "----------------- " + data.get(i));
                 }
             }
 
             @Override
             public void error(String responseError) {
-
+                Log.d("DB TEST", responseError);
             }
         });
     }

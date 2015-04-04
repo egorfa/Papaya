@@ -61,6 +61,11 @@ public class Book {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
+                try {
+                    onSuccess(statusCode, headers, response.getJSONArray("items"));
+                } catch (JSONException e) {
+                    onFailure(statusCode, headers, e.getMessage(), e);
+                }
             }
 
             @Override
