@@ -1,6 +1,9 @@
 package com.yastart.papaya.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +34,30 @@ public class MyBooksGridAdapter extends RecyclerView.Adapter<BooksGridViewHolder
     }
 
     @Override
-    public void onBindViewHolder(BooksGridViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final BooksGridViewHolder viewHolder, int i) {
         final Book book = books.get(i);
 //        Glide.with(mContext).load(book.getUrl()).into(viewHolder.bookImage);
 //        viewHolder.bookName.setText(...);
 //        viewHolder.author.setText(...);
 //        viewHolder.textBackground ...
+
+        // test
+        viewHolder.bookImage.setImageResource(R.mipmap.ic_launcher);
+        viewHolder.bookName.setText("Rainbow\'s end");
+        viewHolder.author.setText("Super Author");
+
+        Bitmap bitmap = ((BitmapDrawable) mContext.getResources().getDrawable(R.mipmap.ic_launcher)).getBitmap();
+        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                if (vibrant != null) {
+                    viewHolder.textBackground.setBackgroundColor(vibrant.getRgb());
+                    viewHolder.bookName.setTextColor(vibrant.getTitleTextColor());
+                    viewHolder.author.setTextColor(vibrant.getTitleTextColor());
+                }
+            }
+        });
     }
 
     @Override
