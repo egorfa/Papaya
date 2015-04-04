@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/rlSearch"
-        android:background="@color/primary_light">
+        android:background="@color/gray_light">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -40,6 +40,6 @@
         android:id="@+id/listView1"
         android:layout_below="@+id/rlSearch"
         android:layout_alignParentBottom="true"
-        android:background="#eee" />
+        android:background="@color/gray_light" />
 
 </RelativeLayout>
