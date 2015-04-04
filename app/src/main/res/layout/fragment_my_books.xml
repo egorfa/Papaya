@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:fab="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/my_books_grid"/>
 
-</LinearLayout>
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/add_book_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_book"
+        fab:fab_colorNormal="@color/primary"
+        fab:fab_colorPressed="@color/primary_dark"
+        fab:fab_colorRipple="@color/primary_dark"/>
+
+</FrameLayout>
