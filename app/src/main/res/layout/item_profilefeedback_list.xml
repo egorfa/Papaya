@@ -34,7 +34,7 @@
                 app:riv_mutate_background="true"
                 app:riv_tile_mode="repeat"
                 app:riv_oval="true"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_launcher"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"

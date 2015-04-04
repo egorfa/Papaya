@@ -7,7 +7,7 @@
     <string name="add_book">Добавить книгу</string>
     <string name="last">Последние</string>
     <string name="my_books">Мои книги</string>
-
+    <string name="requests">Обмены</string>
     <string name="book_name">Название</string>
     <string name="author">Автор</string>
     <string name="condition">Состояние</string>

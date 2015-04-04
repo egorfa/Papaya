@@ -32,7 +32,7 @@
                 app:riv_tile_mode="repeat"
                 app:riv_oval="true"
                 android:layout_alignParentRight="false"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_launcher"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp" />
 

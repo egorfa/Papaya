@@ -10,22 +10,22 @@ import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
+import com.yastart.papaya.fragments.RequestsFragment;
 import com.yastart.papaya.fragments.SearchFragment;
 
 import java.util.ArrayList;
-
 
 public class MainActivity extends BaseActivity {
 
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
+    private static int NUM_PAGES = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +131,8 @@ public class MainActivity extends BaseActivity {
                     return MyBooksFragment.newInstance();
                 case 2:
                     return MyProfileFragment.newInstance();
+                case 3:
+                    return RequestsFragment.newInstance();
                 default:
                     return null;
             }
@@ -138,7 +140,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return NUM_PAGES;
         }
 
         @Override
@@ -150,6 +152,8 @@ public class MainActivity extends BaseActivity {
                     return getString(R.string.my_books);
                 case 2:
                     return getString(R.string.profile);
+                case 3:
+                    return getString(R.string.requests);
                 default:
                     return "";
             }

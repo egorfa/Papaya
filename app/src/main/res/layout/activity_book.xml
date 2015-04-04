@@ -23,7 +23,7 @@
                 android:layout_height="250dp"
                 android:id="@+id/imgDescr"
                 android:background="@color/primary_light"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@drawable/ic_launcher"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:id="@+id/bookTown"
                     android:textSize="20sp"/>
 
-                <Spinner
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Состояние"
@@ -99,7 +99,7 @@
                 app:riv_mutate_background="true"
                 app:riv_tile_mode="repeat"
                 app:riv_oval="true"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_launcher"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/imgUser"
