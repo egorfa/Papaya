@@ -18,7 +18,7 @@ public class BooksGridViewHolder extends RecyclerView.ViewHolder {
     public BooksGridViewHolder(View itemView, View.OnClickListener listener) {
         super(itemView);
 
-        bookImage = (ImageView) itemView.findViewById(R.id.book_image);
+        bookImage = (ImageView) itemView.findViewById(R.id.feedback_profile_img);
         textBackground = (LinearLayout) itemView.findViewById(R.id.text_background);
         bookName = (TextView) itemView.findViewById(R.id.book_name);
         author = (TextView) itemView.findViewById(R.id.author);

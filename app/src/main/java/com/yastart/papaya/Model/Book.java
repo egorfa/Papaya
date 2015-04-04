@@ -1,9 +1,9 @@
 package com.yastart.papaya.Model;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import org.apache.http.Header;
-
-import com.loopj.android.http.*;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,9 +11,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by makazone on 04.04.15.
- */
 public class Book {
 
     private String id;
@@ -28,14 +25,82 @@ public class Book {
 
     private String coverUrl;
 
-    public enum bookCondition {
-        BAD, NORMAL, EXCELLENT;
+    // Conditions types
+    public static final int BAD = 1;
+    public static final int NORMAL = 2;
+    public static final int EXCELLENT = 3;
+
+    private int condition;
+
+    /*
+        Book newBook = new Book();
+        newBook.setAuthors("Makar");
+        newBook.setTitle("My super new book");
+        newBook.setDescription("Rather elaborate description");
+        newBook.setCity("Moscow");
+        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
+        newBook.setCondition(Book.EXCELLENT);
+        newBook.setOwnerID(u.getId());
+
+        newBook.saveBook(new VoidHandler() {
+            @Override
+            public void done() {
+                Log.d("DB TEST", "BOOK HAS BEEN SAVED");
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", "BOOK HASN'T SAVED " + responseError);
+            }
+        });
+     */
+
+    public void saveBook(final VoidHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("title", ownerID);
+        params.put("description", description);
+        params.put("photo", coverUrl);
+        params.put("author", authors);
+        params.put("condition", condition);
+        params.put("owner", ownerID);
+
+        Server.post("book", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                handler.done();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+
+        });
     }
 
+    public void updateBook(Book book, final VoidHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("id", book.id);
+        params.put("title", book.ownerID);
+        params.put("description", book.description);
+        params.put("photo", book.coverUrl);
+        params.put("author", book.authors);
+        params.put("condition", book.condition);
+        params.put("owner", book.ownerID);
 
+        Server.post("update", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                handler.done();
+            }
 
-    // Methods to create object from JSON
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
 
+        });
+    }
 
     // Read methods
 
@@ -64,7 +129,7 @@ public class Book {
         params.put("city", city);
         params.put("order", "-created");
 
-        Server.get("books", params,  new JsonHttpResponseHandler() {
+        Server.get("books", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -141,6 +206,7 @@ public class Book {
             b.coverUrl = jsonObject.getString("photo");
             b.description = jsonObject.getString("description");
             b.authors = jsonObject.getString("author");
+            b.condition = jsonObject.getInt("condition");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -205,6 +271,10 @@ public class Book {
         return coverUrl;
     }
 
+    public int getCondition() {
+        return condition;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -231,6 +301,10 @@ public class Book {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public void setCondition(int condition) {
+        this.condition = condition;
     }
 
     @Override

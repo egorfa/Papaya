@@ -23,7 +23,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/imageView1"
+                android:id="@+id/profile_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="fitCenter"
@@ -43,9 +43,9 @@
                 android:layout_height="wrap_content"
                 android:text="Имя:"
                 android:id="@+id/textView2"
-                android:layout_alignTop="@+id/imageView1"
-                android:layout_toRightOf="@+id/imageView1"
-                android:layout_toEndOf="@+id/imageView1"
+                android:layout_alignTop="@+id/profile_img"
+                android:layout_toRightOf="@+id/profile_img"
+                android:layout_toEndOf="@+id/profile_img"
                 android:layout_marginLeft="43dp"
                 android:layout_marginStart="43dp" />
 
@@ -103,7 +103,7 @@
                 android:layout_height="30dp"
                 android:text="ОТЗЫВЫ"
                 android:id="@+id/button"
-                android:layout_alignBottom="@+id/imageView1"
+                android:layout_alignBottom="@+id/profile_img"
                 android:layout_alignLeft="@+id/textView7"
                 android:layout_alignStart="@+id/textView7"
                 android:layout_alignRight="@+id/tv_contacts"
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Книги для обмена"
-                android:id="@+id/Отзывы"
+                android:id="@+id/label_Books"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
                 android:textColor="#fff"
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/listView"
-                android:layout_below="@+id/Отзывы"
+                android:layout_below="@+id/label_Books"
                 android:layout_alignParentBottom="true"
                 android:background="@color/gray_light" />
 
