@@ -35,7 +35,7 @@ public class MyBooksGridAdapter extends RecyclerView.Adapter<BooksGridViewHolder
 
     @Override
     public void onBindViewHolder(final BooksGridViewHolder viewHolder, int i) {
-        final Book book = books.get(i);
+//        final Book book = books.get(i);
 //        Glide.with(mContext).load(book.getUrl()).into(viewHolder.bookImage);
 //        viewHolder.bookName.setText(...);
 //        viewHolder.author.setText(...);
@@ -62,6 +62,7 @@ public class MyBooksGridAdapter extends RecyclerView.Adapter<BooksGridViewHolder
 
     @Override
     public int getItemCount() {
-        return books.size();
+//        return books.size();
+        return 31;
     }
 }
