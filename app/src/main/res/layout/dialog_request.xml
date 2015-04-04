@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="50dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imgDialog"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="UserName"
+        android:id="@+id/dialogTxtUser"
+        android:layout_below="@+id/imgDialog"
+        android:layout_marginTop="20dp"
+        android:gravity="start"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="BookName"
+        android:id="@+id/dialogTxtBook"
+        android:layout_below="@+id/dialogTxtUser"
+        android:gravity="left"
+        android:layout_alignLeft="@+id/dialogTxtUser"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="BookDescription"
+        android:id="@+id/dialogTxtDescr"
+        android:layout_below="@+id/dialogTxtBook"
+        android:gravity="left"
+        android:layout_alignLeft="@+id/dialogTxtUser"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Decline"
+        android:id="@+id/dialogDecline"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/dialogTxtUser"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Decline"
+        android:id="@+id/dialogAccept"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/dialogTxtUser"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"/>
+
+</RelativeLayout>
