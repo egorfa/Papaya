@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetHandler;
+import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.activities.AddBookActivity;
@@ -53,7 +53,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
     private void loadBooks() {
         User user = new User();
         user.setId("102363055574899025750");
-        Book.getBooksForUser(user, new GetHandler<Book>() {
+        Book.getBooksForUser(user, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
                 books = data;
