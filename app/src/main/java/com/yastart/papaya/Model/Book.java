@@ -26,6 +26,8 @@ public class Book {
         BAD, NORMAL, EXCELLENT;
     }
 
+
+
     // Methods to create object from JSON
 
 
