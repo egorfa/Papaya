@@ -20,7 +20,7 @@ public class SearchFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.profile_lv_item, null);
+        View view = inflater.inflate(R.layout.item_profilebooks_list, null);
 
         return view;
     }

@@ -1,60 +1,55 @@
 package com.yastart.papaya.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.R;
+import com.yastart.papaya.adapters.view_holders.BooksGridViewHolder;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Egor on 04.04.2015.
  */
-public class ProfileBooksListAdapter {
+public class ProfileBooksListAdapter extends RecyclerView.Adapter<BooksGridViewHolder> {
 
-        Context context;
-        protected List<Book> items;
-        LayoutInflater inflater;
-/*
-        public ListDialogMenuAdapter(Context context, List<DialogMenuItem> items){
-            this.context = context;
-            this.items = items;
-            this.inflater = LayoutInflater.from(context);
+    private final Context mContext;
+    private ArrayList<Book> books;
+    private final View.OnClickListener listener;
+
+        public ProfileBooksListAdapter(final Context context, final ArrayList<Book> books, final View.OnClickListener listener){
+            mContext = context;
+            this.books = books;
+            this.listener = listener;
         }
 
-        public int getCount(){
-            return items.size();
-        }
-        public DialogMenuItem getItem(int position){
-            return items.get(position);
-        }
-        public long getItemId(int position){
-            return items.get(position).getDrawableId();
-        }
 
-        private class ViewHolder{
-            TextView txtTitle;
-            ImageView image;
-        }
+    @Override
+    public BooksGridViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_profilebooks_list, viewGroup, false);
+        return new BooksGridViewHolder(v, listener);
+    }
 
-        public View getView(int position, View convertView, ViewGroup parent){
-            ViewHolder holder;
-            if(convertView == null){
-                holder = new ViewHolder();
-                convertView = this.inflater.inflate(R.layout.dialog_list_item, parent, false);
-                holder.txtTitle = (TextView)convertView.findViewById(R.id.msgDialogMenu);
-                holder.image = (ImageView)convertView.findViewById(R.id.imgDialogMenu);
+    @Override
+    public void onBindViewHolder(BooksGridViewHolder viewHolder, int i) {
+        final Book book = books.get(i);
+        //Glide.with(mContext).load(book.getUrl()).into(viewHolder.bookImage);
+        //viewHolder.bookName.setText(...);
+        //viewHolder.author.setText(...);
+        //viewHolder.textBackground ...
 
-                convertView.setTag(holder);
-            }
-            else{
-                holder = (ViewHolder)convertView.getTag();
-            }
-            DialogMenuItem item = items.get(position);
-            holder.txtTitle.setText(item.getTitle());
+        viewHolder.bookImage.setImageResource(R.mipmap.ic_launcher);
+        viewHolder.bookName.setText(books.get(i).getTitle());
+        viewHolder.author.setText(books.get(i).getAuthors());
+    }
 
-            holder.image.setImageResource(item.getDrawableId());
+    @Override
+    public int getItemCount() {
+        return books.size();
+    }
 
-            return convertView;
-        }*/
 }
