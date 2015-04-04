@@ -132,7 +132,7 @@
                 android:id="@+id/listView"
                 android:layout_below="@+id/Отзывы"
                 android:layout_alignParentBottom="true"
-                android:background="#eee" />
+                android:background="@color/gray_light" />
 
         </RelativeLayout>
 

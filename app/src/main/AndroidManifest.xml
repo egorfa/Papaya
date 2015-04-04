@@ -30,6 +30,12 @@
             android:label="@string/add_book"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".activities.SearchActivity"
+            android:label="@string/last"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
