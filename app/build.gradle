@@ -26,7 +26,9 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.0.1'
     compile 'com.melnykov:floatingactionbutton:1.0.6'
     compile 'com.github.nirhart:parallaxscroll:1.0'
-    
+
+    compile 'com.loopj.android:android-async-http:1.4.5'
+
     testCompile 'junit:junit:[4,)'
 }
 
