@@ -1,12 +1,16 @@
 package com.yastart.papaya.activities;
 
+import android.os.Bundle;
+
+import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
-import com.yastart.papaya.fragments.BaseFragment;
+
+import java.util.ArrayList;
 
 /**
  * Created by Egor on 04.04.2015.
  */
-public class ProfileActivity extends BaseFragment {
+public class ProfileActivity extends BaseActivity {
 
 
     @Override
@@ -19,6 +23,26 @@ public class ProfileActivity extends BaseFragment {
         return "Профиль";
     }
 
+    @Override
+    protected boolean getDisplayHomeAsUp() {
+        return true;
+    }
 
+    @Override
+    protected boolean getHomeButtonEnabled() {
+        return true;
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        ArrayList<Book> Books = new ArrayList<>();
+        Book book = new Book();//
+
+
+    }
 
 }
