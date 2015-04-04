@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <com.nirhart.parallaxscroll.views.ParallaxScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:parallax_factor="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/imgDescr"
+                android:background="@color/primary_light"
+                android:src="@mipmap/ic_launcher"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rlDescr"
+                android:paddingBottom="20dp"
+                android:background="@color/primary"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/imgDescr">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Имя-Автор"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left"
+                    android:id="@+id/bookName"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Город"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignLeft="@+id/bookName"
+                    android:gravity="left"
+                    android:layout_below="@+id/bookName"
+                    android:id="@+id/bookTown"
+                    android:textSize="20sp"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Состояние"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignLeft="@+id/bookName"
+                    android:gravity="left"
+                    android:layout_below="@+id/bookTown"
+                    android:id="@+id/bookCondition"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/bookCondition"
+                    android:id="@+id/bookDescription"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnExchange"
+                    android:layout_marginTop="20dp"
+                    android:text="Обменяться"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/bookDescription"/>
+
+            </RelativeLayout>
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:riv_corner_radius="30dip"
+                app:riv_border_width="2dip"
+                app:riv_border_color="#333333"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"
+                app:riv_oval="true"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imgUser"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/rlDescr"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="-50dp"/>
+
+        </RelativeLayout>
+
+    </com.nirhart.parallaxscroll.views.ParallaxScrollView>
+
+</LinearLayout>
