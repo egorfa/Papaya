@@ -13,6 +13,7 @@ import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
+import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.SearchFragment;
@@ -36,11 +37,51 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-        User u = User.getTestUser();
-        Book.getBookByID("5732568548769792", new GetItemHandler<Book>() {
+        User u = User.getCurrentUser();
+
+        Book.getBooksForUser(u, new GetListHandler<Book>() {
             @Override
-            public void done(Book data) {
-                Log.d("DB TEST", data.toString());
+            public void done(ArrayList data) {
+                Log.d("DB TEST", "TOTAL BOOKS = " + data.size());
+                for (int i = 0; i < data.size(); i++) {
+                    Log.d("DB TEST", "--------------------  " + data.toString());
+                }
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", responseError);
+            }
+        });
+
+        Book newBook = new Book();
+        newBook.setAuthors("Makar");
+        newBook.setTitle("My super new book");
+        newBook.setDescription("Rather elaborate description");
+        newBook.setCity("Moscow");
+        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
+        newBook.setCondition(Book.EXCELLENT);
+        newBook.setOwnerID(u.getId());
+
+        newBook.saveBook(new VoidHandler() {
+            @Override
+            public void done() {
+                Log.d("DB TEST", "BOOK HAS BEEN SAVED");
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", "BOOK HASN'T SAVED " + responseError);
+            }
+        });
+
+        Book.getBooksForUser(u, new GetListHandler<Book>() {
+            @Override
+            public void done(ArrayList data) {
+                Log.d("DB TEST", "TOTAL BOOKS = " + data.size());
+                for (int i = 0; i < data.size(); i++) {
+                    Log.d("DB TEST", "--------------------  " + data.toString());
+                }
             }
 
             @Override
