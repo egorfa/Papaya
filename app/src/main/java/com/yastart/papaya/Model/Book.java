@@ -37,6 +37,31 @@ public class Book {
 
     // Read methods
 
+    public static void getBookByID(String id, final GetHandler<Book> handler) {
+        Server.get("book"+id, null, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                try {
+                    onSuccess(statusCode, headers, response.getJSONArray("items"));
+                } catch (JSONException e) {
+                    onFailure(statusCode, headers, e.getMessage(), e);
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray booksJSON) {
+                ArrayList<Book> books = fromJson(booksJSON);
+                handler.done(books);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+        });
+    }
+
     /**
      * @param city
      * @return An arraylist of books associated with a city
@@ -96,6 +121,7 @@ public class Book {
             b.id = jsonObject.getString("id");
             b.title = jsonObject.getString("title");
             b.ownerID = jsonObject.getString("owner");
+            b.coverUrl = jsonObject.getString("photo");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
