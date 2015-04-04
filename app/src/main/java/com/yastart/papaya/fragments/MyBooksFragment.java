@@ -16,7 +16,9 @@ import java.util.ArrayList;
 
 public class MyBooksFragment extends BaseFragment implements View.OnClickListener {
 
-    public MyBooksFragment() {
+    public static MyBooksFragment newInstance() {
+        MyBooksFragment pageFragment = new MyBooksFragment();
+        return pageFragment;
     }
 
     @Override
