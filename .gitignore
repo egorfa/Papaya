@@ -6,3 +6,6 @@
 /build
 Papaya.iml
 .idea/
+
+# MAC OS
+.DS_Store
