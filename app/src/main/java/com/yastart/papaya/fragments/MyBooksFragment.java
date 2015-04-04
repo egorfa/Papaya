@@ -1,5 +1,6 @@
 package com.yastart.papaya.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,7 @@ import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
+import com.yastart.papaya.activities.AddBookActivity;
 import com.yastart.papaya.adapters.MyBooksGridAdapter;
 
 import java.util.ArrayList;
@@ -43,12 +45,17 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         addBookButton.setOnClickListener(this);
         addBookButton.attachToRecyclerView(grid);
 
+        loadBooks();
+
+        return rootView;
+    }
+
+    private void loadBooks() {
         User user = new User();
         user.setId("102363055574899025750");
         Book.getBooksForUser(user, new GetHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
-                Log.d("TAG", "" + data.size());
                 books = data;
                 grid.setAdapter(new MyBooksGridAdapter(mContext, books, MyBooksFragment.this));
             }
@@ -58,8 +65,6 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
                 Log.d("ERROR", responseError);
             }
         });
-
-        return rootView;
     }
 
     @Override
@@ -71,8 +76,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
                 // TODO startBookActivity
                 break;
             case R.id.add_book_button:
-                Toast.makeText(mContext, "Pressed", Toast.LENGTH_SHORT).show();
-                // TODO startAddBookActivity
+                mContext.startActivity(new Intent(mContext, AddBookActivity.class));
                 break;
         }
     }

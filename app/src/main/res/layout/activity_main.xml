@@ -16,7 +16,7 @@
         android:textColor="@color/white"
         android:background="@color/primary"
         app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="4dp"
+        app:pstsUnderlineHeight="0dp"
         app:pstsIndicatorHeight="4dp"
         app:pstsIndicatorColor="@color/primary_light">
 

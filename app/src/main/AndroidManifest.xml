@@ -21,9 +21,14 @@
 
         <activity
             android:name=".activities.ProfileActivity"
-            android:label="Profile"
+            android:label="@string/profile"
             android:screenOrientation="portrait">
+        </activity>
 
+        <activity
+            android:name=".activities.AddBookActivity"
+            android:label="@string/add_book"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
