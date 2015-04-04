@@ -21,8 +21,10 @@
 
         <activity
             android:name=".activities.ProfileActivity"
-            android:label="@string/profile"
-            android:screenOrientation="portrait"/>
+            android:label="Profile"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>
