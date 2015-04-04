@@ -1,7 +1,7 @@
 package com.yastart.papaya.Model;
 
 import org.apache.http.Header;
-import org.json.*;
+
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
@@ -9,7 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
+import java.util.Date;
 
 /**
  * Created by makazone on 04.04.15.
@@ -24,6 +24,8 @@ public class Book {
     private String title;
     private String authors;
 
+    private Date createdAt;
+
     private String coverUrl;
 
     public enum bookCondition {
@@ -37,8 +39,32 @@ public class Book {
 
     // Read methods
 
-    public static void getBookByID(String id, final GetHandler<Book> handler) {
-        Server.get("book"+id, null, new JsonHttpResponseHandler(){
+    public static void getBookByID(String id, final GetItemHandler<Book> handler) {
+        Server.get("book/"+id, null, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                Book b = Book.fromJson(response);
+                handler.done(b);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+        });
+    }
+
+    /**
+     * @param city
+     * @return An arraylist of books associated with a city
+     */
+    public static void getBooksForCity(String city, final GetListHandler<Book> handler) {
+        RequestParams params = new RequestParams();
+        params.put("city", city);
+        params.put("order", "-created");
+
+        Server.get("books", params,  new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -59,16 +85,8 @@ public class Book {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 handler.error(responseString);
             }
-        });
-    }
 
-    /**
-     * @param city
-     * @return An arraylist of books associated with a city
-     */
-    public static ArrayList<Book> getBooksForCity(String city) {
-        ArrayList<Book> result = new ArrayList<Book>();
-        return result;
+        });
     }
 
     /**
@@ -76,11 +94,10 @@ public class Book {
      * @param user
      * @return
      */
-    public static void getBooksForUser(User user, final GetHandler<Book> handler) {
-        ArrayList<Book> result = new ArrayList<Book>();
-
+    public static void getBooksForUser(User user, final GetListHandler<Book> handler) {
         RequestParams params = new RequestParams();
         params.put("owner", user.getId());
+        params.put("order", "-created");
 
         Server.get("books", params,  new JsonHttpResponseHandler() {
             @Override
@@ -122,6 +139,8 @@ public class Book {
             b.title = jsonObject.getString("title");
             b.ownerID = jsonObject.getString("owner");
             b.coverUrl = jsonObject.getString("photo");
+            b.description = jsonObject.getString("description");
+            b.authors = jsonObject.getString("author");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

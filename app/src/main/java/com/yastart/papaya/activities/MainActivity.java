@@ -6,12 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetItemHandler;
+import com.yastart.papaya.Model.GetListHandler;
+import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
 import com.yastart.papaya.fragments.SearchFragment;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends BaseActivity {
@@ -29,6 +36,20 @@ public class MainActivity extends BaseActivity {
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
+
+        User u = User.getTestUser();
+        Book.getBookByID("5732568548769792", new GetItemHandler<Book>() {
+            @Override
+            public void done(Book data) {
+                Log.d("DB TEST", data.toString());
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", responseError);
+            }
+        });
+
     }
 
     @Override
@@ -83,14 +104,14 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Поиск";
+                    return getString(R.string.last);
                 case 1:
-                    return "Мои книги";
+                    return getString(R.string.my_books);
                 case 2:
-                    return "Профиль";
+                    return getString(R.string.profile);
+                default:
+                    return "";
             }
-
-            return "Wrong Title";
         }
 
     }

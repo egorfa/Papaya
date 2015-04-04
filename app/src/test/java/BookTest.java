@@ -1,5 +1,5 @@
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetHandler;
+import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
 
 import junit.framework.TestCase;
@@ -23,7 +23,7 @@ public class BookTest extends TestCase {
         User user = new User();
         user.setId("102363055574899025750");
 
-        Book.getBooksForUser(user, new GetHandler<Book>() {
+        Book.getBooksForUser(user, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
                 assertNotNull(data);

@@ -31,4 +31,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public static User getTestUser() {
+        User u = new User();
+        u.setId("102363055574899025750");
+        return u;
+    }
 }

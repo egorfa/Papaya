@@ -34,7 +34,7 @@
                 app:riv_tile_mode="repeat"
                 app:riv_oval="true"
                 android:layout_alignParentRight="false"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_launcher"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp" />
 
@@ -132,7 +132,7 @@
                 android:id="@+id/listView"
                 android:layout_below="@+id/label_Books"
                 android:layout_alignParentBottom="true"
-                android:background="#eee" />
+                android:background="@color/gray_light" />
 
         </RelativeLayout>
 
