@@ -8,8 +8,4 @@ public abstract class BaseFragment extends Fragment {
 
     protected Context mContext;
 
-    protected abstract int getLayoutResourceIdentifier();
-
-    protected abstract String getTitleToolBar();
-
 }

@@ -24,14 +24,4 @@ public class SearchFragment extends BaseFragment {
 
         return view;
     }
-
-    @Override
-    protected int getLayoutResourceIdentifier(){
-        return R.layout.fragment_search;
-    }
-
-    @Override
-    protected String getTitleToolBar(){
-        return "Поиск";
-    }
 }
