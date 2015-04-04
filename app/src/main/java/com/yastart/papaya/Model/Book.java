@@ -1,5 +1,8 @@
 package com.yastart.papaya.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -11,7 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Book {
+public class Book  implements Parcelable {
 
     private String id;
     private String city;
@@ -31,6 +34,10 @@ public class Book {
     public static final int EXCELLENT = 3;
 
     private int condition;
+
+    public Book() {
+
+    }
 
     public void saveBook(final VoidHandler handler) {
         RequestParams params = new RequestParams();
@@ -288,4 +295,44 @@ public class Book {
     public String toString() {
         return "Book " + this.id + " title: " + this.title;
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    // упаковываем объект в Parcel
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(id);
+        parcel.writeString(city);
+        parcel.writeString(ownerID);
+        parcel.writeString(description);
+        parcel.writeString(title);
+        parcel.writeString(authors);
+        parcel.writeString(coverUrl);
+        parcel.writeInt(condition);
+
+    }
+
+    public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
+        // распаковываем объект из Parcel
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
+    private Book(Parcel parcel) {
+        id = parcel.readString();
+        city = parcel.readString();
+        ownerID = parcel.readString();
+        description = parcel.readString();
+        title = parcel.readString();
+        authors = parcel.readString();
+        coverUrl = parcel.readString();
+        condition = parcel.readInt();
+    }
+
 }
