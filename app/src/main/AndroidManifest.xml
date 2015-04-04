@@ -33,7 +33,7 @@
 
         <activity
             android:name=".activities.SearchActivity"
-            android:label="@string/search_book"
+            android:label="@string/last"
             android:screenOrientation="portrait">
         </activity>
     </application>
