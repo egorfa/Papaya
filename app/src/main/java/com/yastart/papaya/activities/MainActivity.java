@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity {
         newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
         newBook.setCondition(Book.EXCELLENT);
         newBook.setOwnerID(u.getId());
+        newBook.setCity("Moscow");
 
         newBook.saveBook(new VoidHandler() {
             @Override
@@ -130,9 +131,9 @@ public class MainActivity extends BaseActivity {
                 case 1:
                     return MyBooksFragment.newInstance();
                 case 2:
-                    return MyProfileFragment.newInstance();
-                case 3:
                     return RequestsFragment.newInstance();
+                case 3:
+                    return MyProfileFragment.newInstance();
                 default:
                     return null;
             }
@@ -151,9 +152,9 @@ public class MainActivity extends BaseActivity {
                 case 1:
                     return getString(R.string.my_books);
                 case 2:
-                    return getString(R.string.profile);
-                case 3:
                     return getString(R.string.requests);
+                case 3:
+                    return getString(R.string.profile);
                 default:
                     return "";
             }

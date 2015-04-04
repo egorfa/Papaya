@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by 123 on 04.04.2015.
  */
-public class SearchFragment extends BaseFragment implements View.OnClickListener  {
+public class SearchFragment extends BaseFragment implements View.OnClickListener {
 
     RecyclerView list;
     ArrayList<Book> books;
@@ -39,10 +39,10 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, null);
 
-        search = (EditText)view.findViewById(R.id.textSearch);
+        search = (EditText) view.findViewById(R.id.textSearch);
 
         ArrayList<Book> Books = new ArrayList<>();
-        for(int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             Book book = new Book();
             book.setTitle("Заголовок" + String.valueOf(i));
             book.setAuthors("Автор");

@@ -10,9 +10,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Найти книгу"
+        android:hint="@string/find_book"
         android:id="@+id/editSearch"
         android:gravity="center"
-        android:drawableLeft="@drawable/ic_find_book"/>
+        android:drawableLeft="@drawable/ic_find_book"
+        android:layout_margin="@dimen/default_padding"/>
 
 </LinearLayout>
