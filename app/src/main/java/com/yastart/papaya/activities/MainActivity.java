@@ -6,51 +6,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetHandler;
-import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.SearchFragment;
 
-import java.util.ArrayList;
-
 
 public class MainActivity extends BaseActivity {
 
-    ViewPager pager;
-    PagerAdapter pagerAdapter;
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pager = (ViewPager)findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
-
-        User u = new User();
-        u.setId("102363055574899025750");
-        Book.getBooksForUser(u, new GetHandler<Book>() {
-            @Override
-            public void done(ArrayList<Book> data) {
-                Log.d("DB TEST", ""+data.size());
-                for (int i = 0; i < data.size(); i++) {
-                    Log.d("DB TEST", "----------------- " + data.get(i));
-                }
-            }
-
-            @Override
-            public void error(String responseError) {
-                Log.d("DB TEST", responseError);
-            }
-        });
     }
 
     @Override
@@ -74,7 +51,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private class CustomFragmentPagerAdapter extends FragmentStatePagerAdapter {
-            FragmentManager fm;
+        FragmentManager fm;
 
         public CustomFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -84,7 +61,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
 
-            switch(position){
+            switch (position) {
                 case 0:
                     return SearchFragment.newInstance();
                 case 1:
@@ -103,7 +80,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return "Поиск";
                 case 1:

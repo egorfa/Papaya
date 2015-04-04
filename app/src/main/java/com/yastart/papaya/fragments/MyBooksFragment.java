@@ -1,9 +1,11 @@
 package com.yastart.papaya.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,10 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetHandler;
+import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
+import com.yastart.papaya.activities.AddBookActivity;
 import com.yastart.papaya.adapters.MyBooksGridAdapter;
 
 import java.util.ArrayList;
@@ -40,11 +45,26 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         addBookButton.setOnClickListener(this);
         addBookButton.attachToRecyclerView(grid);
 
-        books = null; // TODO get books
-
-        grid.setAdapter(new MyBooksGridAdapter(mContext, books, this));
+        loadBooks();
 
         return rootView;
+    }
+
+    private void loadBooks() {
+        User user = new User();
+        user.setId("102363055574899025750");
+        Book.getBooksForUser(user, new GetHandler<Book>() {
+            @Override
+            public void done(ArrayList<Book> data) {
+                books = data;
+                grid.setAdapter(new MyBooksGridAdapter(mContext, books, MyBooksFragment.this));
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("ERROR", responseError);
+            }
+        });
     }
 
     @Override
@@ -56,7 +76,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
                 // TODO startBookActivity
                 break;
             case R.id.add_book_button:
-                Toast.makeText(mContext, "Pressed", Toast.LENGTH_SHORT).show();
+                mContext.startActivity(new Intent(mContext, AddBookActivity.class));
                 break;
         }
     }

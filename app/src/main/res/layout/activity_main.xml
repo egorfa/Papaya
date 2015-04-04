@@ -11,13 +11,13 @@
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/pagerTitleStrip"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_gravity="top"
         android:textColor="@color/white"
         android:background="@color/primary"
         app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="1px"
-        app:pstsIndicatorHeight="1dp"
+        app:pstsUnderlineHeight="0dp"
+        app:pstsIndicatorHeight="4dp"
         app:pstsIndicatorColor="@color/primary_light">
 
     </com.astuetz.PagerSlidingTabStrip >

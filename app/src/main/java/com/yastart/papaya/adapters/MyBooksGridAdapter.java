@@ -2,13 +2,15 @@ package com.yastart.papaya.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.view_holders.BooksGridViewHolder;
@@ -35,34 +37,36 @@ public class MyBooksGridAdapter extends RecyclerView.Adapter<BooksGridViewHolder
 
     @Override
     public void onBindViewHolder(final BooksGridViewHolder viewHolder, int i) {
-//        final Book book = books.get(i);
-//        Glide.with(mContext).load(book.getUrl()).into(viewHolder.bookImage);
-//        viewHolder.bookName.setText(...);
-//        viewHolder.author.setText(...);
-//        viewHolder.textBackground ...
+        final Book book = books.get(i);
+        Glide.with(mContext)
+                .load(book.getCoverUrl())
+                .into(viewHolder.bookImage);
+        viewHolder.bookName.setText(book.getTitle());
+        viewHolder.author.setText(book.getAuthors());
 
-        // test
-        viewHolder.bookImage.setImageResource(R.mipmap.ic_launcher);
-        viewHolder.bookName.setText("Rainbow\'s end");
-        viewHolder.author.setText("Super Author");
-
-        Bitmap bitmap = ((BitmapDrawable) mContext.getResources().getDrawable(R.mipmap.ic_launcher)).getBitmap();
-        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                if (vibrant != null) {
-                    viewHolder.textBackground.setBackgroundColor(vibrant.getRgb());
-                    viewHolder.bookName.setTextColor(vibrant.getTitleTextColor());
-                    viewHolder.author.setTextColor(vibrant.getTitleTextColor());
-                }
-            }
-        });
+        Glide.with(mContext)
+                .load(book.getCoverUrl())
+                .asBitmap()
+                .into(new SimpleTarget<Bitmap>(100, 100) {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
+                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                                if (vibrant != null) {
+                                    viewHolder.textBackground.setBackgroundColor(vibrant.getRgb());
+                                    viewHolder.bookName.setTextColor(vibrant.getTitleTextColor());
+                                    viewHolder.author.setTextColor(vibrant.getTitleTextColor());
+                                }
+                            }
+                        });
+                    }
+                });
     }
 
     @Override
     public int getItemCount() {
-//        return books.size();
-        return 31;
+        return books.size();
     }
 }
