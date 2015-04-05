@@ -24,7 +24,6 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.SaveCallback;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.dialogs.PhotoPickerDialog;
@@ -121,11 +120,12 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
         newBook.setCity("Moscow");
         newBook.setCoverUrl(URL);
         newBook.setCondition(condition);
-        newBook.setOwnerID(User.getCurrentUser().getId());
+//        newBook.setOwnerID(User.getCurrentUser().getId());
+        newBook.setOwnerID("117211419728589565827");
         newBook.saveBook(new VoidHandler() {
             @Override
             public void done() {
-                // do nothing
+                Log.d("TAG", "------------------> done");
             }
 
             @Override
