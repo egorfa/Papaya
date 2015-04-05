@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
             public void done(ArrayList data) {
                 Log.d("DB TEST", "TOTAL BOOKS = " + data.size());
                 for (int i = 0; i < data.size(); i++) {
-                    Log.d("DB TEST", "--------------------  " + data.toString());
+                    Log.d("DB TEST", "--------------------  " + data.get(i).toString());
                 }
             }
 
@@ -60,7 +60,6 @@ public class MainActivity extends BaseActivity {
         newBook.setAuthors("Makar");
         newBook.setTitle("My super new book");
         newBook.setDescription("Rather elaborate description");
-        newBook.setCity("Moscow");
         newBook.setCoverUrl("https://ru.wikipedia.org/wiki/");
         newBook.setCondition(Book.EXCELLENT);
         newBook.setOwnerID(u.getId());
@@ -83,7 +82,7 @@ public class MainActivity extends BaseActivity {
             public void done(ArrayList data) {
                 Log.d("DB TEST", "TOTAL BOOKS = " + data.size());
                 for (int i = 0; i < data.size(); i++) {
-                    Log.d("DB TEST", "--------------------  " + data.toString());
+                    Log.d("DB TEST", "--------------------  " + data.get(i).toString());
                 }
             }
 
