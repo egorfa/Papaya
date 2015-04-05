@@ -41,62 +41,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Имя:"
-                android:id="@+id/textView2"
-                android:layout_alignTop="@+id/profile_img"
-                android:layout_toRightOf="@+id/profile_img"
-                android:layout_toEndOf="@+id/profile_img"
-                android:layout_marginLeft="43dp"
-                android:layout_marginStart="43dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="User2"
                 android:id="@+id/tv_name"
-                android:layout_marginLeft="18dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginStart="18dp"
-                android:layout_above="@+id/textView4"
-                android:layout_toRightOf="@+id/textView7"
-                android:layout_toEndOf="@+id/textView7" />
+                android:layout_alignTop="@+id/profile_img"
+                android:layout_toRightOf="@+id/profile_img" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Город:"
-                android:id="@+id/textView4"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/textView2"
-                android:layout_alignLeft="@+id/textView2"
-                android:layout_alignStart="@+id/textView2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="Moscow"
                 android:id="@+id/tv_city"
-                android:layout_alignTop="@+id/textView4"
                 android:layout_alignLeft="@+id/tv_name"
-                android:layout_alignStart="@+id/tv_name" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Контакты:"
-                android:id="@+id/textView7"
-                android:layout_alignLeft="@+id/textView4"
-                android:layout_alignStart="@+id/textView4"
-                android:layout_below="@+id/textView4"
+                android:layout_alignStart="@+id/tv_name"
+                android:layout_below="@+id/tv_name"
                 android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="vk.com/id_user2"
                 android:id="@+id/tv_contacts"
-                android:layout_alignTop="@+id/textView7"
                 android:layout_alignLeft="@+id/tv_city"
-                android:layout_alignStart="@+id/tv_city" />
+                android:layout_alignStart="@+id/tv_city"
+                android:layout_below="@+id/tv_city"
+                android:layout_marginTop="10dp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -104,11 +74,8 @@
                 android:text="ОТЗЫВЫ"
                 android:id="@+id/button"
                 android:layout_alignBottom="@+id/profile_img"
-                android:layout_alignLeft="@+id/textView7"
-                android:layout_alignStart="@+id/textView7"
-                android:layout_alignRight="@+id/tv_contacts"
-                android:layout_alignEnd="@+id/tv_contacts"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                android:layout_alignLeft="@+id/tv_name" />
 
         </RelativeLayout>
 

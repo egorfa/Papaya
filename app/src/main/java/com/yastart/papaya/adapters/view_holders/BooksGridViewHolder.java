@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 
 public class BooksGridViewHolder extends RecyclerView.ViewHolder {
@@ -21,6 +22,7 @@ public class BooksGridViewHolder extends RecyclerView.ViewHolder {
         bookImage = (ImageView) itemView.findViewById(R.id.book_image);
         textBackground = (LinearLayout) itemView.findViewById(R.id.text_background);
         bookName = (TextView) itemView.findViewById(R.id.book_name);
+        bookName.setTypeface(Papaya.font_semibold);
         author = (TextView) itemView.findViewById(R.id.author);
 
         itemView.setOnClickListener(listener);

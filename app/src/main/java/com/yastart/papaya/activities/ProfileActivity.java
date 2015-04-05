@@ -5,8 +5,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.DividerItemDecoration;
 import com.yastart.papaya.adapters.ProfileBooksListAdapter;
@@ -43,7 +45,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+
+        ((TextView) findViewById(R.id.tv_name)).setTypeface(Papaya.font_regular);
+        ((TextView) findViewById(R.id.tv_city)).setTypeface(Papaya.font_regular);
+        ((TextView) findViewById(R.id.tv_contacts)).setTypeface(Papaya.font_regular);
 
         ArrayList<Book> Books = new ArrayList<>();
         for(int i=0;i<10;i++) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
             holder = new HeaderViewHolder();
             convertView = inflater.inflate(R.layout.expandable_listview_header, parent, false);
             holder.text = (TextView) convertView.findViewById(R.id.headerTxt);
+            holder.text.setTypeface(Papaya.font_semibold);
             convertView.setTag(holder);
         } else {
             holder = (HeaderViewHolder) convertView.getTag();
