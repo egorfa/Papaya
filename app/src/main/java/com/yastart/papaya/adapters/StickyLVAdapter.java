@@ -68,7 +68,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
         Request request = requests.get(position);
 
         if(request.getInitiatorID().equals(u.getId())){
-            User.findUserByID(request.getInitiatorID(), new GetItemHandler<User>() {
+            User.findUserByID(request.getResponderID(), new GetItemHandler<User>() {
                 @Override
                 public void done(User data) {
                     holder.msg.setText(fromUser + data.getUsername());
