@@ -42,7 +42,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             Book book = new Book();
             book.setTitle("Заголовок" + String.valueOf(i));
             book.setAuthors("Автор");
-            books.add(book);
+            Books.add(book);
         }
         books = Books;
 
