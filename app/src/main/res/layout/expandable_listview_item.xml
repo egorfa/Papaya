@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/white">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/imgLvItem"
+        app:riv_corner_radius="30dip"
+        app:riv_border_width="2dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="repeat"
+        app:riv_oval="true"
+        android:src="@drawable/ic_launcher"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пользователь %username% предлагает вам обменяться книгой"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/imgLvItem"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/imgLvItem"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:id="@+id/lv_message"/>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lv_message"
+        android:weightSum="1"
+        android:layout_alignLeft="@+id/lv_message"
+        android:layout_alignRight="@+id/lv_message">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="0.5"
+            android:text="Принять"
+            android:textColor="@color/white"
+            android:background="@color/blue"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="0.5"
+            android:background="@color/gray_background"
+            android:text="Отклонить"/>
+
+        </LinearLayout>
+
+</RelativeLayout>
