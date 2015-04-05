@@ -128,9 +128,9 @@ public class User {
 //        if (currentUser != null) { return currentUser; }
 //
 //        currentUser = new User();
-//        currentUser.setEmail("egorfalkov1999@gmail.com");
-//        currentUser.setUsername("Егорка");
-//        currentUser.setId("5636318331666432");
+//        currentUser.setEmail("skvoter46@gmail.com");
+//        currentUser.setUsername("skvoter46");
+//        currentUser.setId("5664248772427776");
 //        currentUser.setCity("Moscow");
 
         currentUser = new User();
