@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пользователь %username% предлагает вам обменяться книгой"
+        android:text=""
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:textSize="@dimen/text_size_small"
