@@ -69,7 +69,7 @@ public class BookActivity extends BaseActivity {
                 Request newRequest = new Request();
                 newRequest.setInitiatorID(User.getCurrentUser().getId());
                 newRequest.setResponderID(book.getOwnerID());
-                newRequest.setBookDesiredID("5139717033033728");
+                newRequest.setBookDesiredID(book.getId());
 
                 newRequest.save(new VoidHandler() {
                     @Override
