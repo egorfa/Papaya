@@ -47,11 +47,11 @@ public class RequestsFragment extends BaseFragment {
                 Log.d(tag, "Dimenstion[0] " + data.get(0).size());
                 Log.d(tag, "Dimenstions[1] " + data.get(1).size());
                 for (int i = 0; i < data.get(1).size(); i++) {
-                    headings.add("Входящие");
+                    headings.add("Исходящие");
                     requests.add(data.get(1).get(i));
                 }
                 for (int i = 0; i < data.get(0).size(); i++) {
-                    headings.add("Исходящие");
+                    headings.add("Входящие");
                     requests.add(data.get(0).get(i));
                 }
 
