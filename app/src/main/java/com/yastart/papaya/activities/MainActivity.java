@@ -11,6 +11,8 @@ import android.util.Log;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetListHandler;
+import com.yastart.papaya.Model.Request;
+import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
@@ -36,6 +38,42 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
+        final Request requestToDelete = new Request();
+        requestToDelete.setId("5237101121503232");
+        requestToDelete.setInitiatorID("1636319331666438");
+        requestToDelete.setResponderID("5664248772427776");
+
+        requestToDelete.acceptedByInitiator(new VoidHandler() {
+            @Override
+            public void done() {
+                requestToDelete.acceptedByResponder(new VoidHandler() {
+                    @Override
+                    public void done() {
+                        requestToDelete.acceptRequest(new VoidHandler() {
+                            @Override
+                            public void done() {
+                                Log.d("TEST", "olololo");
+                            }
+
+                            @Override
+                            public void error(String responseError) {
+                                Log.d("TEST", "failed to delete");
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void error(String responseError) {
+                        Log.d("TEST", "failed to change responder");
+                    }
+                });
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("TEST", "failed to change init");
+            }
+        });
 
 //        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
 //            @Override

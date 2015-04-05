@@ -302,8 +302,9 @@ public class Request implements Parcelable {
     }
 
     public void acceptRequest(final VoidHandler handler) {
+        if (!initiatorApproved || !responderApproved) { handler.done(); return; }
 
-        Server.get("deleterequest", new RequestParams("id", id), new JsonHttpResponseHandler() {
+        Server.get("deleterequest/" + id, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 handler.done();
@@ -319,6 +320,9 @@ public class Request implements Parcelable {
                 handler.error(responseString);
             }
         });
+    }
+
+    public void declineRequest() {
     }
 
     public void acceptedByResponder(final VoidHandler handler) {
