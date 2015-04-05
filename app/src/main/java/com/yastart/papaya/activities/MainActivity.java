@@ -37,6 +37,33 @@ public class MainActivity extends BaseActivity {
         tabs.setViewPager(pager);
 
 
+//        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
+//            @Override
+//            public void done(Book book) {
+//                Request newRequest = new Request();
+//                newRequest.setInitiatorID(User.getCurrentUser().getId());
+//                newRequest.setResponderID(book.getOwnerID());
+//                newRequest.setBookDesiredID(book.getId());
+//
+//                newRequest.save(new VoidHandler() {
+//                    @Override
+//                    public void done() {
+//                        Log.d("SAVED", "SAAAAVED!!!!");
+//                    }
+//
+//                    @Override
+//                    public void error(String responseError) {
+//                        Log.d("ERROR", responseError);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void error(String responseError) {
+//                Log.d("ERROR", responseError);
+//            }
+//        });
+
 //        Request newRequest = new Request();
 //        newRequest.setInitiatorID(User.getCurrentUser().getId());
 //        newRequest.setResponderID("117211419728589565827");
@@ -54,17 +81,17 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 
-        Book.findBookByStr("Jx", new GetListHandler<Book>() {
-            @Override
-            public void done(ArrayList<Book> data) {
-                Log.d("TEST", "" + data.size());
-            }
-
-            @Override
-            public void error(String responseError) {
-
-            }
-        });
+//        Book.findBookByStr("Jx", new GetListHandler<Book>() {
+//            @Override
+//            public void done(ArrayList<Book> data) {
+//                Log.d("TEST", ""+data.size());
+//            }
+//
+//            @Override
+//            public void error(String responseError) {
+//
+//            }
+//        });
     }
 
     @Override

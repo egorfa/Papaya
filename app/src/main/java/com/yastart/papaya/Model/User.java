@@ -127,6 +127,12 @@ public class User {
         currentUser.setEmail("egorfalkov1999@gmail.com");
         currentUser.setUsername("Егорка");
         currentUser.setId("5636318331666432");
+
+//        currentUser = new User();
+//        currentUser.setEmail("makazone@gmail.com");
+//        currentUser.setUsername("Makazone");
+//        currentUser.setId("1636319331666438");
+
         return currentUser;
     }
 

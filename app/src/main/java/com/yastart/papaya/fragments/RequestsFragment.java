@@ -36,6 +36,8 @@ public class RequestsFragment extends BaseFragment {
         headings = new ArrayList<String>();
         requests = new ArrayList<Request>();
 
+        final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
+
         User u = User.getCurrentUser();
         Request.getRequestsForUser(u, new GetListHandler<ArrayList<Request>>() {
             @Override
@@ -45,13 +47,16 @@ public class RequestsFragment extends BaseFragment {
                 Log.d(tag, "Dimenstion[0] " + data.get(0).size());
                 Log.d(tag, "Dimenstions[1] " + data.get(1).size());
                 for (int i = 0; i < data.get(1).size(); i++) {
-                    headings.add("Входящие");
+                    headings.add("Исходящие");
                     requests.add(data.get(1).get(i));
                 }
                 for (int i = 0; i < data.get(0).size(); i++) {
-                    headings.add("Исходящие");
+                    headings.add("Входящие");
                     requests.add(data.get(0).get(i));
                 }
+
+                StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
+                exlv.setAdapter(adapter);
             }
 
             @Override
@@ -59,11 +64,6 @@ public class RequestsFragment extends BaseFragment {
                 Log.d("REQUEST DEBUG", responseError);
             }
         });
-
-        final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
-        StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
-        exlv.setAdapter(adapter);
-
 
         exlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
