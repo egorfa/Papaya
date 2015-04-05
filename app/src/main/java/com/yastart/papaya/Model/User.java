@@ -100,6 +100,10 @@ public class User {
         return email;
     }
 
+    public String getCity() {
+        return city;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
