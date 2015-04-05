@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/activity_search_layout">
+    android:id="@+id/activity_search_layout"
+    android:background="@color/gray_background">
 
     <include layout="@layout/view_toolbar"/>
 
@@ -15,7 +16,9 @@
         android:id="@+id/editSearch"
         android:gravity="center"
         android:drawableLeft="@drawable/ic_find_book"
-        android:layout_margin="@dimen/default_padding"/>
+        android:layout_margin="4dp"
+        android:padding="8dp"
+        android:background="@color/white"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

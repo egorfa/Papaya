@@ -7,6 +7,7 @@
     <dimen name="my_books_grid_margin">4dp</dimen>
 
     <dimen name="user_pic_size">64dp</dimen>
+    <dimen name="feedback_pic_size">48dp</dimen>
     <dimen name="item_text_margin">16dp</dimen>
 
     <dimen name="text_size_large">22sp</dimen>

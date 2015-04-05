@@ -16,9 +16,6 @@ import java.util.ArrayList;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-/**
- * Created by 123 on 05.04.2015.
- */
 public class RequestsFragment extends BaseFragment {
 
     ArrayList<String> headings;

@@ -6,15 +6,13 @@
     app:parallax_factor="1.5"
     android:id="@+id/RootView">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
             android:paddingTop="20dp">
@@ -22,17 +20,14 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:riv_corner_radius="30dip"
-                app:riv_border_width="2dip"
-                app:riv_border_color="#333333"
+                android:layout_width="@dimen/user_pic_size"
+                android:layout_height="@dimen/user_pic_size"
                 app:riv_mutate_background="true"
                 app:riv_tile_mode="repeat"
                 app:riv_oval="true"
                 android:layout_alignParentRight="false"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher" />
 
@@ -81,9 +76,9 @@
                 android:id="@+id/label_Feedbacks"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_vertical|center_horizontal"
-                android:textColor="#fff"
-                android:background="@color/primary_dark"
-                android:textSize="20dp" />
+                android:textColor="@color/primary_text"
+                android:background="@color/gray_background"
+                android:textSize="@dimen/text_size_medium" />
 
             <ListView
                 android:layout_width="match_parent"
@@ -91,7 +86,7 @@
                 android:id="@+id/list_feedback"
                 android:layout_below="@+id/label_Feedbacks"
                 android:layout_alignParentBottom="true"
-                android:background="#eee" />
+                android:background="@color/white" />
 
         </RelativeLayout>
 
