@@ -40,8 +40,6 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-        ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
-
         User u = User.getCurrentUser();
         Request.getRequestsForUser(u, new GetListHandler<ArrayList<Request>>() {
             @Override

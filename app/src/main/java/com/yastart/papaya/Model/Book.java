@@ -160,7 +160,6 @@ public class Book  implements Parcelable {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray booksJSON) {
                 ArrayList<Book> books = fromJson(booksJSON);
-                ArrayList<Book> filtered = fromJson(booksJSON);
 
                 for (Iterator<Book> it = books.iterator(); it.hasNext();) {
                     if (it.next().ownerID.equals(User.getCurrentUser().getId())) {
