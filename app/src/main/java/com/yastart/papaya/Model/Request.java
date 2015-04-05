@@ -251,6 +251,106 @@ public class Request implements Parcelable {
         return requests;
     }
 
+    public void acceptedByInitiator(final VoidHandler handler) {
+        this.initiatorApproved = true;
+
+        JSONObject params = new JSONObject();
+        try {
+            params.put("id", id);
+            params.put("user_id_from", initiatorID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Server.post("accept1", params, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    // If the response is JSONObject instead of expected JSONArray
+                    handler.done();
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    Log.d("A", "a");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, response);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("A", "b");
+                    handler.error(errorResponse.toString());
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    Log.d("A", "c");
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    Log.d("A", "d");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, responseString);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            handler.error("FAILURE!");
+        }
+    }
+
+    public void acceptedByResponder(final VoidHandler handler) {
+        this.responderApproved = true;
+
+        JSONObject params = new JSONObject();
+        try {
+            params.put("id", id);
+            params.put("user_id_to", responderID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Server.post("accept2", params, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    // If the response is JSONObject instead of expected JSONArray
+                    handler.done();
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    Log.d("A", "a");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, response);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("A", "b");
+                    handler.error(errorResponse.toString());
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    Log.d("A", "c");
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    Log.d("A", "d");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, responseString);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            handler.error("FAILURE!");
+        }
+    }
+
     public String getId() {
         return id;
     }
