@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:id="@+id/find_books_layout">
+            android:id="@+id/find_books_layout"
+            android:transitionName="hello">
         </LinearLayout>
     </FrameLayout>
 

@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class SearchFragment extends BaseFragment implements View.OnClickListener {
 
-    View search;
-    RecyclerView list;
-    ArrayList<Book> books;
+    private View search;
+    private RecyclerView list;
+    private ArrayList<Book> books;
 
     public static SearchFragment newInstance() {
         SearchFragment pageFragment = new SearchFragment();
@@ -30,10 +30,9 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, null);
-
+        mContext = view.getContext();
         search = view.findViewById(R.id.find_books_layout);
 
         ArrayList<Book> Books = new ArrayList<>();
@@ -57,8 +56,8 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getBaseContext(), SearchActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(mContext, SearchActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
