@@ -47,7 +47,7 @@ public class Book  implements Parcelable {
             @Override
             public void done(ArrayList<Book> books) {
                 for (Iterator<Book> it = books.iterator(); it.hasNext();) {
-                    if (!it.next().title.contains(searchStr)) {
+                    if (!it.next().title.toLowerCase().contains(searchStr.toLowerCase())) {
                         it.remove();
                     }
                 }

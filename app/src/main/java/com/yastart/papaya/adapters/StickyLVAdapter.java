@@ -1,6 +1,7 @@
 package com.yastart.papaya.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +68,10 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
         Request request = requests.get(position);
 
         if(request.getInitiatorID().equals(u.getId())){
-            User.findUserByID(request.getInitiatorID(), new GetItemHandler<User>() {
+            User.findUserByID(request.getResponderID(), new GetItemHandler<User>() {
                 @Override
                 public void done(User data) {
-                    holder.msg.setText("Пользователь " + data.getUsername() + toUser);
+                    holder.msg.setText(fromUser + data.getUsername());
                 }
 
                 @Override
@@ -84,12 +85,12 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
             User.findUserByID(request.getInitiatorID(), new GetItemHandler<User>() {
                 @Override
                 public void done(User data) {
-                    holder.msg.setText(fromUser + data.getUsername());
+                    holder.msg.setText("Пользователь " + data.getUsername() + toUser);
                 }
 
                 @Override
                 public void error(String responseError) {
-
+                    Log.d("TEST", responseError);
                 }
             });
         }

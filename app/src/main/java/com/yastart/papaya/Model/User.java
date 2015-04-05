@@ -116,22 +116,28 @@ public class User {
         this.email = email;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     /**
      * Should return current logged user
      * @return
      */
     public static User getCurrentUser() {
 //        if (currentUser != null) { return currentUser; }
-
+//
 //        currentUser = new User();
-//        currentUser.setEmail("egorfalkov1999@gmail.com");
-//        currentUser.setUsername("Егорка");
-//        currentUser.setId("5636318331666432");
+//        currentUser.setEmail("skvoter46@gmail.com");
+//        currentUser.setUsername("skvoter46");
+//        currentUser.setId("5664248772427776");
+//        currentUser.setCity("Moscow");
 
         currentUser = new User();
         currentUser.setEmail("makazone@gmail.com");
         currentUser.setUsername("Makazone");
         currentUser.setId("1636319331666438");
+        currentUser.setCity("Moscow");
 
         return currentUser;
     }

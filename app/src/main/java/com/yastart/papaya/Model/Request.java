@@ -143,7 +143,7 @@ public class Request implements Parcelable {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray requestsJSON) {
-                final ArrayList<Request> requestsToMe = fromJson(requestsJSON);
+                final ArrayList<Request> requestsFromMe = fromJson(requestsJSON);
 
                 RequestParams n_params = new RequestParams();
                 n_params.put("order", "-created");
@@ -163,7 +163,7 @@ public class Request implements Parcelable {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray requestsJSON) {
-                        final ArrayList<Request> requestsFromMe = fromJson(requestsJSON);
+                        final ArrayList<Request> requestsToMe = fromJson(requestsJSON);
 
                         ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
                         result.add(requestsFromMe);
