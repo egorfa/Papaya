@@ -302,7 +302,7 @@ public class Request implements Parcelable {
     }
 
     public void acceptRequest(final VoidHandler handler) {
-        if (!initiatorApproved || !responderApproved) { handler.done(); return; }
+        if (!initiatorApproved || !responderApproved) { handler.error("someone hasn't approved"); return; }
 
         Server.get("deleterequest/" + id, null, new JsonHttpResponseHandler() {
             @Override
