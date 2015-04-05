@@ -12,6 +12,7 @@ import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
+import com.yastart.papaya.activities.RequestActivity;
 import com.yastart.papaya.adapters.StickyLVAdapter;
 
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class RequestsFragment extends BaseFragment {
         headings = new ArrayList<String>();
         requests = new ArrayList<Request>();
 
+        final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
+
         User u = User.getCurrentUser();
         Request.getRequestsForUser(u, new GetListHandler<ArrayList<Request>>() {
             @Override
@@ -52,6 +55,8 @@ public class RequestsFragment extends BaseFragment {
                     headings.add("Исходящие");
                     requests.add(data.get(0).get(i));
                 }
+                StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
+                exlv.setAdapter(adapter);
             }
 
             @Override
@@ -60,15 +65,15 @@ public class RequestsFragment extends BaseFragment {
             }
         });
 
-        final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
-        StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
-        exlv.setAdapter(adapter);
+
 
 
         exlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(getActivity(), RequestActivity.class);
+                intent.putExtra("request", requests.get(i));
+                startActivity(intent);
             }
         });
 
