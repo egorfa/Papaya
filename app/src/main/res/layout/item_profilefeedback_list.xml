@@ -50,7 +50,7 @@
                 android:textSize="25sp"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:layout_alignTop="@+id/feedback_profile_img" />
+                android:layout_alignTop="@+id/book_image" />
 
         </RelativeLayout>
 

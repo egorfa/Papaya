@@ -16,7 +16,7 @@ public class FeedBackViewHolder {
 
     public FeedBackViewHolder(View itemView, View.OnClickListener listener) {
 
-        profileImage = (ImageView) itemView.findViewById(R.id.feedback_profile_img);
+        profileImage = (ImageView) itemView.findViewById(R.id.book_image);
         feedbackTv = (TextView) itemView.findViewById(R.id.feedback_textview);
 
         itemView.setOnClickListener(listener);
