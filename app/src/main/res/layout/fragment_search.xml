@@ -28,15 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:id="@+id/find_books_layout"
-            android:transitionName="hello">
+            android:id="@+id/find_books_layout">
         </LinearLayout>
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView1"
+        android:id="@+id/search_books_list"
         android:background="@color/gray_background"/>
 
 </LinearLayout>

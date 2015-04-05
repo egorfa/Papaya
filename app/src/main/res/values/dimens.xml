@@ -17,4 +17,7 @@
 
     <dimen name="book_photo_height">192dp</dimen>
     <dimen name="book_photo_width">128dp</dimen>
+
+    <dimen name="last_book_photo_height">128dp</dimen>
+    <dimen name="last_book_photo_width">96dp</dimen>
 </resources>

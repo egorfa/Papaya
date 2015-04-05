@@ -2,6 +2,7 @@ package com.yastart.papaya.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,10 +22,11 @@ import com.yastart.papaya.adapters.MyBooksGridAdapter;
 
 import java.util.ArrayList;
 
-public class MyBooksFragment extends BaseFragment implements View.OnClickListener {
+public class MyBooksFragment extends BaseFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView grid;
     private ArrayList<Book> books;
+    private SwipeRefreshLayout refreshLayout;
 
     public static MyBooksFragment newInstance() {
         MyBooksFragment pageFragment = new MyBooksFragment();
@@ -45,9 +47,17 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         addBookButton.setOnClickListener(this);
         addBookButton.attachToRecyclerView(grid);
 
-        loadBooks();
+        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.primary, R.color.primary_dark);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
     }
 
     private void loadBooks() {
@@ -59,12 +69,14 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         Book.getBooksForUser(user, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
+                refreshLayout.setRefreshing(false);
                 books = data;
                 grid.setAdapter(new MyBooksGridAdapter(mContext, books, MyBooksFragment.this));
             }
 
             @Override
             public void error(String responseError) {
+                refreshLayout.setRefreshing(false);
                 Log.d("ERROR", responseError);
             }
         });
@@ -85,5 +97,10 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
                 mContext.startActivity(new Intent(mContext, AddBookActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        loadBooks();
     }
 }
