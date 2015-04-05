@@ -36,6 +36,7 @@ public class RequestsFragment extends BaseFragment implements SwipeRefreshLayout
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_requests, null);
+        mContext = view.getContext();
 
         headings = new ArrayList<String>();
         requests = new ArrayList<Request>();
@@ -61,7 +62,7 @@ public class RequestsFragment extends BaseFragment implements SwipeRefreshLayout
                     requests.add(data.get(0).get(i));
                 }
 
-                StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
+                StickyLVAdapter adapter = new StickyLVAdapter(mContext, headings, requests);
                 exlv.setAdapter(adapter);
             }
 
