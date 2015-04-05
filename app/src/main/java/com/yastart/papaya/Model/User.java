@@ -125,7 +125,12 @@ public class User {
         if (currentUser != null) { return currentUser; }
 
         currentUser = new User();
-        currentUser.setId("102363055574899025750");
+        currentUser.setId("117211419728589565827");
         return currentUser;
+    }
+
+    @Override
+    public String toString() {
+        return "username = " + username + " " + " id = " + id;
     }
 }
