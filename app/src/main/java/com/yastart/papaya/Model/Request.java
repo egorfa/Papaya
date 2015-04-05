@@ -301,6 +301,26 @@ public class Request implements Parcelable {
         }
     }
 
+    public void acceptRequest(final VoidHandler handler) {
+
+        Server.get("deleterequest", new RequestParams("id", id), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                handler.done();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray requestsJSON) {
+                handler.done();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                handler.error(responseString);
+            }
+        });
+    }
+
     public void acceptedByResponder(final VoidHandler handler) {
         this.responderApproved = true;
 
