@@ -61,10 +61,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         final RecyclerView list = (RecyclerView) findViewById(R.id.listView);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
-        list.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        list.setLayoutManager(new LinearLayoutManager(mContext));
         list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
-        list.setAdapter(new ProfileBooksListAdapter(getBaseContext(), Books, this));
+        list.setAdapter(new ProfileBooksListAdapter(mContext, Books, this));
     }
 
     @Override
