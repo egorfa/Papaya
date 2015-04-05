@@ -12,11 +12,8 @@ import com.bumptech.glide.Glide;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.User;
+import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
-import com.yastart.papaya.adapters.MyBooksGridAdapter;
-import com.yastart.papaya.fragments.MyBooksFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by 123 on 05.04.2015.
@@ -33,9 +30,11 @@ public class BookActivity extends BaseActivity {
         ImageView imgBook = (ImageView) findViewById(R.id.imgDescr);
         imgProfile = (ImageView) findViewById(R.id.imgUser);
         TextView tvBookName = (TextView) findViewById(R.id.bookName);
+        tvBookName.setTypeface(Papaya.font_semibold);
         TextView tvBookTown = (TextView) findViewById(R.id.bookTown);
         TextView tvBookCondition = (TextView) findViewById(R.id.bookCondition);
         TextView tvDescription = (TextView) findViewById(R.id.bookDescription);
+        tvDescription.setTypeface(Papaya.font_semibold);
 
         Intent intent = getIntent();
         Book book = intent.getParcelableExtra("book");
