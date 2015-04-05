@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 
@@ -20,10 +21,10 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
     private ArrayList<String> headings;
-    private ArrayList<String> requests;
+    private ArrayList<Request> requests;
     private LayoutInflater inflater;
 
-    public StickyLVAdapter(Context context, ArrayList<String> headings, ArrayList<String> requests) {
+    public StickyLVAdapter(Context context, ArrayList<String> headings, ArrayList<Request> requests) {
         this.inflater = LayoutInflater.from(context);
         this.headings = headings;
         this.requests = requests;
@@ -35,7 +36,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
     }
 
     @Override
-    public String getItem(int position) {
+    public Request getItem(int position) {
         return requests.get(position);
     }
 
@@ -51,13 +52,13 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.expandable_listview_item, parent, false);
-            //holder.text = (TextView) convertView.findViewById(R.id.lv_word);
+            holder.msg = (TextView) convertView.findViewById(R.id.lv_message);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //holder.text.setText(mWords.get(position));
+        holder.msg.setText(requests.get(position).);
 
         return convertView;
     }
@@ -90,7 +91,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
     }
 
     class ViewHolder {
-        //TextView text;
+        TextView msg;
     }
 
 }
