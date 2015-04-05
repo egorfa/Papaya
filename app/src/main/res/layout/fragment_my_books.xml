@@ -23,8 +23,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_book"
-        fab:fab_colorNormal="@color/primary"
+
+        fab:fab_colorNormal="448AFF"
         fab:fab_colorPressed="@color/primary_dark"
         fab:fab_colorRipple="@color/primary_dark"/>
-
+<!--//fab:fab_colorNormal="@color/primary"-->
 </FrameLayout>

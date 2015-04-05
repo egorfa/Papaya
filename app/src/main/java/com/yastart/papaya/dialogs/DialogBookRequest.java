@@ -1,12 +1,11 @@
 package com.yastart.papaya.dialogs;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +21,7 @@ public class DialogBookRequest extends DialogFragment implements View.OnClickLis
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialog_request, container);
-        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         context = rootView.getContext();
 

@@ -83,6 +83,7 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
     @Override
     public void afterTextChanged(Editable s) {
         // TODO
+        final String searchString = s.toString();
         booksList.setAdapter(new ProfileBooksListAdapter(mContext, books, this));
     }
 
