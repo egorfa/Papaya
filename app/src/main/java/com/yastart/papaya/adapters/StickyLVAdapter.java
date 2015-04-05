@@ -71,7 +71,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
             User.findUserByID(request.getInitiatorID(), new GetItemHandler<User>() {
                 @Override
                 public void done(User data) {
-                    holder.msg.setText("Пользователь " + data.getUsername() + toUser);
+                    holder.msg.setText(fromUser + data.getUsername());
                 }
 
                 @Override
@@ -85,7 +85,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
             User.findUserByID(request.getInitiatorID(), new GetItemHandler<User>() {
                 @Override
                 public void done(User data) {
-                    holder.msg.setText(fromUser + data.getUsername());
+                    holder.msg.setText("Пользователь " + data.getUsername() + toUser);
                 }
 
                 @Override
