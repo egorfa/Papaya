@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
@@ -60,7 +61,7 @@ public class MainActivity extends BaseActivity {
         newBook.setTitle("My super new book");
         newBook.setDescription("Rather elaborate description");
         newBook.setCity("Moscow");
-        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
+        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/");
         newBook.setCondition(Book.EXCELLENT);
         newBook.setOwnerID(u.getId());
         newBook.setCity("Moscow");
@@ -84,6 +85,18 @@ public class MainActivity extends BaseActivity {
                 for (int i = 0; i < data.size(); i++) {
                     Log.d("DB TEST", "--------------------  " + data.toString());
                 }
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("DB TEST", responseError);
+            }
+        });
+
+        User.findUserByID("5710239819104256", new GetItemHandler<User>() {
+            @Override
+            public void done(User data) {
+                Log.d("DB TEST", data.toString());
             }
 
             @Override
