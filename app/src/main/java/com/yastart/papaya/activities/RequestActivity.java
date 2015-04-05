@@ -58,8 +58,8 @@ public class RequestActivity extends BaseActivity implements View.OnClickListene
     private void loadBooks() {
 
         User u = new User();
-        //u.setId(request.getId());
-        u.setId("1636319331666438");
+        u.setId(request.getId());
+        //u.setId("1636319331666438");
         Book.getBooksForUser(u, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
