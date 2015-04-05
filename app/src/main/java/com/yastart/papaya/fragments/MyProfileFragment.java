@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by Egor on 04.04.2015.
  */
-public class MyProfileFragment extends BaseFragment implements View.OnClickListener  {
+public class MyProfileFragment extends BaseFragment implements View.OnClickListener {
 
     TextView userName, userContacts;
 
@@ -31,8 +31,8 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, null);
 
-        userName = (TextView)view.findViewById(R.id.tv_name);
-        userContacts = (TextView)view.findViewById(R.id.tv_contacts);
+        userName = (TextView) view.findViewById(R.id.tv_name);
+        userContacts = (TextView) view.findViewById(R.id.tv_contacts);
 
         User u = User.getCurrentUser();
 
@@ -40,8 +40,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
         userContacts.setText(u.getEmail());
 
         ArrayList<FeedBack> feedbacks = new ArrayList<>();
-        for(int i=0;i<4;i++)
-        {
+        for (int i = 0; i < 4; i++) {
             FeedBack feedback = new FeedBack(null, null, "Спасибо за книгу! Быстро договорились и обменялись. Качество книги соответствует указанному.");
             feedbacks.add(feedback);
         }
