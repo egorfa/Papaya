@@ -39,7 +39,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         search = view.findViewById(R.id.find_books_layout);
 
 
-        list = (RecyclerView) view.findViewById(R.id.listView1);
+        list = (RecyclerView) view.findViewById(R.id.search_books_list);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
@@ -84,11 +84,10 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.book_search:
                 final int position = list.getChildLayoutPosition(v);
-                Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
+                Intent intent = new Intent(mContext, BookActivity.class);
                 intent.putExtra(BookActivity.EXTRA_BOOK, books.get(position));
                 intent.putExtra(BookActivity.EXTRA_IS_CURRENT_USER_BOOK, false);
                 startActivity(intent);
-                // TODO startBookActivity
                 break;
         }
     }

@@ -6,13 +6,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetItemHandler;
+import com.yastart.papaya.Model.GetListHandler;
+import com.yastart.papaya.Model.User;
+import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
 import com.yastart.papaya.fragments.RequestsFragment;
 import com.yastart.papaya.fragments.SearchFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
@@ -32,6 +40,22 @@ public class MainActivity extends BaseActivity {
         tabs.setViewPager(pager);
 
 
+        Request newRequest = new Request();
+        newRequest.setInitiatorID(User.getCurrentUser().getId());
+        newRequest.setResponderID("117211419728589565827");
+        newRequest.setBookDesiredID("5139717033033728");
+
+        newRequest.save(new VoidHandler() {
+            @Override
+            public void done() {
+                Log.d("SAVED", "SAAAAVED!!!!");
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("ERROR", responseError);
+            }
+        });
     }
 
     @Override
@@ -101,5 +125,4 @@ public class MainActivity extends BaseActivity {
         }
 
     }
-
 }

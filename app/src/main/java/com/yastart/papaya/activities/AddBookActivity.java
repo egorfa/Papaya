@@ -239,6 +239,7 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
     private byte[] getImageBytes(File file) {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 512, 512, false);
         byte[] imageBytes = null;
         ByteArrayOutputStream stream = null;
         try {

@@ -8,15 +8,11 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.view_holders.BooksGridViewHolder;
 
 import java.util.ArrayList;
 
-/**
- * Created by Egor on 04.04.2015.
- */
 public class ProfileBooksListAdapter extends RecyclerView.Adapter<BooksGridViewHolder> {
 
     private final Context mContext;

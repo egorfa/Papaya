@@ -34,6 +34,7 @@ public class Server {
 
     public static void post(String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
         StringEntity entity = new StringEntity(params.toString());
+//        entity.set
         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
         client.post(null, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
