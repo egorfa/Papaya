@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetListHandler;
+import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
 import com.yastart.papaya.activities.BookActivity;
 import com.yastart.papaya.activities.SearchActivity;
@@ -35,14 +38,6 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         mContext = view.getContext();
         search = view.findViewById(R.id.find_books_layout);
 
-        ArrayList<Book> Books = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Book book = new Book();
-            book.setTitle("Заголовок" + String.valueOf(i));
-            book.setAuthors("Автор");
-            Books.add(book);
-        }
-        books = Books;
 
         list = (RecyclerView) view.findViewById(R.id.listView1);
         list.setHasFixedSize(true);
@@ -50,8 +45,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         list.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL_LIST));
 
-        list.setAdapter(new
-                ProfileBooksListAdapter(getActivity().getBaseContext(), books, this));
+        loadBooks();
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +56,27 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         });
 
         return view;
+    }
+
+    private void loadBooks() {
+//        User user = User.getCurrentUser();
+
+        User user = new User();
+//        user.setId("102363055574899025750");
+        user.setId("117211419728589565827");
+        Book.getBooksForCity("Moscow", new GetListHandler<Book>() {
+            @Override
+            public void done(ArrayList<Book> data) {
+                books = data;
+                list.setAdapter(new
+                        ProfileBooksListAdapter(getActivity().getBaseContext(), books, SearchFragment.this));
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("ERROR", responseError);
+            }
+        });
     }
 
     @Override

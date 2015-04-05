@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.view_holders.BooksGridViewHolder;
@@ -42,7 +43,9 @@ public class ProfileBooksListAdapter extends RecyclerView.Adapter<BooksGridViewH
         //viewHolder.author.setText(...);
         //viewHolder.textBackground ...
 
-        viewHolder.bookImage.setImageResource(R.drawable.ic_launcher);
+        Glide.with(mContext)
+                .load(book.getCoverUrl())
+                .into(viewHolder.bookImage);
         viewHolder.bookName.setText(books.get(i).getTitle());
         viewHolder.author.setText(books.get(i).getAuthors());
     }
