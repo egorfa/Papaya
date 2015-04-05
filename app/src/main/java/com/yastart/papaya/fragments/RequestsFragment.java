@@ -32,7 +32,7 @@ public class RequestsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_requests, null);
+        final View view = inflater.inflate(R.layout.fragment_requests, null);
 
         headings = new ArrayList<String>();
         requests = new ArrayList<Request>();
@@ -53,6 +53,10 @@ public class RequestsFragment extends BaseFragment {
                     headings.add("Исходящие");
                     requests.add(data.get(0).get(i));
                 }
+
+                final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
+                StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
+                exlv.setAdapter(adapter);
             }
 
             @Override
@@ -60,10 +64,6 @@ public class RequestsFragment extends BaseFragment {
                 Log.d("REQUEST DEBUG", responseError);
             }
         });
-
-            final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
-            StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
-            exlv.setAdapter(adapter);
 
             return view;
         }
