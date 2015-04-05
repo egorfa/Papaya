@@ -1,3 +1,3 @@
 # Papaya
-Book-crossing Android app.
+Android приложение для обмена бумажными книгами, созданное на хакатоне YandexStart от TolstoyStarupCamp.
 
