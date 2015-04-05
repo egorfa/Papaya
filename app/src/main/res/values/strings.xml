@@ -10,6 +10,7 @@
     <string name="author">Автор</string>
     <string name="condition">Состояние</string>
     <string name="description">Описание</string>
+    <string name="request_activity">Запрос</string>
 
     <string-array name="conditions">
         <item>Как новая</item>

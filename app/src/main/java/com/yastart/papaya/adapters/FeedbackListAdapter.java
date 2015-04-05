@@ -12,9 +12,6 @@ import com.yastart.papaya.adapters.view_holders.FeedBackViewHolder;
 
 import java.util.ArrayList;
 
-/**
- * Created by Egor on 04.04.2015.
- */
 public class FeedbackListAdapter extends ArrayAdapter<FeedBack> implements View.OnClickListener {
 
     final Context mContext;
@@ -48,7 +45,6 @@ public class FeedbackListAdapter extends ArrayAdapter<FeedBack> implements View.
         //TODO загрузку картинки профиля, отправившего отзыв
 
         holder.feedbackTv.setText(feedBack.getFeedback());
-
 
         return convertView;
     }

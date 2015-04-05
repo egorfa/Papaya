@@ -2,6 +2,7 @@ package com.yastart.papaya.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,29 +22,31 @@ import com.yastart.papaya.adapters.ProfileBooksListAdapter;
 
 import java.util.ArrayList;
 
-public class SearchFragment extends BaseFragment implements View.OnClickListener {
+public class SearchFragment extends BaseFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private View search;
     private RecyclerView list;
     private ArrayList<Book> books;
+    private SwipeRefreshLayout refreshLayout;
 
     public static SearchFragment newInstance() {
-        SearchFragment pageFragment = new SearchFragment();
-        return pageFragment;
+        return new SearchFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, null);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         mContext = view.getContext();
-        search = view.findViewById(R.id.find_books_layout);
-
+        View search = view.findViewById(R.id.find_books_layout);
 
         list = (RecyclerView) view.findViewById(R.id.search_books_list);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         list.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL_LIST));
+
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.primary, R.color.primary_dark);
 
         loadBooks();
 
@@ -58,22 +61,27 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         return view;
     }
 
-    private void loadBooks() {
-//        User user = User.getCurrentUser();
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
+    }
 
+    private void loadBooks() {
         User user = new User();
 //        user.setId("102363055574899025750");
         user.setId("117211419728589565827");
         Book.getBooksForCity("Moscow", new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
+                refreshLayout.setRefreshing(false);
                 books = data;
-                list.setAdapter(new
-                        ProfileBooksListAdapter(getActivity().getBaseContext(), books, SearchFragment.this));
+                list.setAdapter(new ProfileBooksListAdapter(getActivity().getBaseContext(), books, SearchFragment.this));
             }
 
             @Override
             public void error(String responseError) {
+                refreshLayout.setRefreshing(false);
                 Log.d("ERROR", responseError);
             }
         });
@@ -90,5 +98,11 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        refreshLayout.setRefreshing(true);
+        loadBooks();
     }
 }

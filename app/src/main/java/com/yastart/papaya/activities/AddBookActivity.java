@@ -122,6 +122,8 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
         newBook.setCoverUrl(URL);
         newBook.setCondition(condition);
         newBook.setOwnerID(User.getCurrentUser().getId());
+//        newBook.setOwnerID("117211419728589565827");
+        newBook.setOwnerID(User.getCurrentUser().getId());
         newBook.saveBook(new VoidHandler() {
             @Override
             public void done() {
@@ -237,9 +239,10 @@ public class AddBookActivity extends BaseActivity implements View.OnClickListene
     }
 
     private byte[] getImageBytes(File file) {
+        final int SCALE = 4;
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions);
-        bitmap = Bitmap.createScaledBitmap(bitmap, 512, 512, false);
+        bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / SCALE, bitmap.getHeight() / SCALE, false);
         byte[] imageBytes = null;
         ByteArrayOutputStream stream = null;
         try {
