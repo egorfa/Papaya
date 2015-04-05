@@ -42,6 +42,26 @@ public class Book  implements Parcelable {
 
     }
 
+    public static void findBookByStr(final String searchStr, final GetListHandler<Book> handler) {
+        Book.getBooksForCity(User.getCurrentUser().getCity(), new GetListHandler<Book>() {
+            @Override
+            public void done(ArrayList<Book> books) {
+                for (Iterator<Book> it = books.iterator(); it.hasNext();) {
+                    if (!it.next().title.contains(searchStr)) {
+                        it.remove();
+                    }
+                }
+
+                handler.done(books);
+            }
+
+            @Override
+            public void error(String responseError) {
+                handler.error(responseError);
+            }
+        });
+    }
+
     public void saveBook(final VoidHandler handler) {
 //        JSONObject jsonParams = new JSONObject();
 //        jsonParams.put("notes", "Test api support");

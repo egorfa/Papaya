@@ -12,7 +12,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
-import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
@@ -40,25 +39,16 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-//        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
+
+//        Request newRequest = new Request();
+//        newRequest.setInitiatorID(User.getCurrentUser().getId());
+//        newRequest.setResponderID("117211419728589565827");
+//        newRequest.setBookDesiredID("5139717033033728");
+//
+//        newRequest.save(new VoidHandler() {
 //            @Override
-//            public void done(Book book) {
-//                Request newRequest = new Request();
-//                newRequest.setInitiatorID(User.getCurrentUser().getId());
-//                newRequest.setResponderID(book.getOwnerID());
-//                newRequest.setBookDesiredID(book.getId());
-//
-//                newRequest.save(new VoidHandler() {
-//                    @Override
-//                    public void done() {
-//                        Log.d("SAVED", "SAAAAVED!!!!");
-//                    }
-//
-//                    @Override
-//                    public void error(String responseError) {
-//                        Log.d("ERROR", responseError);
-//                    }
-//                });
+//            public void done() {
+//                Log.d("SAVED", "SAAAAVED!!!!");
 //            }
 //
 //            @Override
@@ -67,20 +57,15 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 
-        Request newRequest = new Request();
-        newRequest.setInitiatorID(User.getCurrentUser().getId());
-        newRequest.setResponderID("117211419728589565827");
-        newRequest.setBookDesiredID("5139717033033728");
-
-        newRequest.save(new VoidHandler() {
+        Book.findBookByStr("Jx", new GetListHandler<Book>() {
             @Override
-            public void done() {
-                Log.d("SAVED", "SAAAAVED!!!!");
+            public void done(ArrayList<Book> data) {
+                Log.d("TEST", ""+data.size());
             }
 
             @Override
             public void error(String responseError) {
-                Log.d("ERROR", responseError);
+
             }
         });
     }

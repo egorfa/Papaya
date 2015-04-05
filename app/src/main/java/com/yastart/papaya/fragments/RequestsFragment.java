@@ -1,10 +1,11 @@
 package com.yastart.papaya.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.Request;
@@ -19,7 +20,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 public class RequestsFragment extends BaseFragment {
 
     ArrayList<String> headings;
-    ArrayList<Request> requests;
+    ArrayList<String> requests;
 
     public static RequestsFragment newInstance() {
         RequestsFragment pageFragment = new RequestsFragment();
@@ -51,10 +52,10 @@ public class RequestsFragment extends BaseFragment {
                     requests.add(data.get(0).get(i));
                 }
 
-                final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
-                StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
-                exlv.setAdapter(adapter);
-            }
+        requests.add("Oxuenno");
+        requests.add("Oxuenno");
+        requests.add("Oxuenno");
+        requests.add("Oxuenno");
 
             @Override
             public void error(String responseError) {
@@ -62,6 +63,14 @@ public class RequestsFragment extends BaseFragment {
             }
         });
 
-            return view;
-        }
+
+        exlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+            }
+        });
+
+        return view;
     }
+}

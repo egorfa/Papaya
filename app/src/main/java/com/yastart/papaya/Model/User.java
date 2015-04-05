@@ -4,11 +4,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class User {
     private static User currentUser;
@@ -103,6 +100,10 @@ public class User {
         return email;
     }
 
+    public String getCity() {
+        return city;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -123,6 +124,8 @@ public class User {
 //        if (currentUser != null) { return currentUser; }
 
         currentUser = new User();
+        currentUser.setEmail("egorfalkov1999@gmail.com");
+        currentUser.setUsername("Егорка");
         currentUser.setId("5636318331666432");
         return currentUser;
     }
