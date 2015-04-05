@@ -1,5 +1,7 @@
 package com.yastart.papaya.Model;
 
+import android.util.Log;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -56,62 +58,91 @@ public class Request {
      * @param user
      * @param handler
      */
-    public void getRequestsForUser(final User user, final GetListHandler<ArrayList<Request>> handler) {
+    public static void getRequestsForUser(final User user, final GetListHandler<ArrayList<Request>> handler) {
         RequestParams params = new RequestParams();
         params.put("order", "-created");
-        params.put("user_id_to", user.getId());
+        params.put("user_id_from", user.getId());
 
         Server.get("requests", params, new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
-                try {
-                    onSuccess(statusCode, headers, response.getJSONArray("items"));
-                } catch (JSONException e) {
-                    onFailure(statusCode, headers, e.getMessage(), e);
-                }
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                Log.d("A", "a");
+                handler.done(null);
+                super.onSuccess(statusCode, headers, response);
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray requestsJSON) {
-                final ArrayList<Request> requestsToMe = fromJson(requestsJSON);
-
-                RequestParams n_params = new RequestParams();
-                n_params.put("user_id_from", user.getId());
-                Server.get("requests", n_params, new JsonHttpResponseHandler(){
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        // If the response is JSONObject instead of expected JSONArray
-                        try {
-                            onSuccess(statusCode, headers, response.getJSONArray("items"));
-                        } catch (JSONException e) {
-                            onFailure(statusCode, headers, e.getMessage(), e);
-                        }
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray requests1JSON) {
-                        ArrayList<Request> requestsFromMe = fromJson(requests1JSON);
-
-                        ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
-                        result.add(requestsFromMe);
-                        result.add(requestsToMe);
-
-                        handler.done(result);
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        handler.error(responseString);
-                    }
-                });
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("A", "b");
+                handler.error(errorResponse.toString());
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                handler.error(responseString);
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                Log.d("A", "c");
+                super.onFailure(statusCode, headers, throwable, errorResponse);
             }
 
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Log.d("A", "d");
+                handler.done(null);
+                super.onSuccess(statusCode, headers, responseString);
+            }
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                // If the response is JSONObject instead of expected JSONArray
+//                try {
+//                    onSuccess(statusCode, headers, response.getJSONArray("items"));
+//                } catch (JSONException e) {
+//                    onFailure(statusCode, headers, e.getMessage(), e);
+//                }
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONArray requestsJSON) {
+//                final ArrayList<Request> requestsToMe = fromJson(requestsJSON);
+//
+//                RequestParams n_params = new RequestParams();
+//                n_params.put("user_id_from", user.getId());
+//                Server.get("requests", n_params, new JsonHttpResponseHandler(){
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                        // If the response is JSONObject instead of expected JSONArray
+//                        try {
+//                            onSuccess(statusCode, headers, response.getJSONArray("items"));
+//                        } catch (JSONException e) {
+//                            onFailure(statusCode, headers, e.getMessage(), e);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, JSONArray requests1JSON) {
+//                        ArrayList<Request> requestsFromMe = fromJson(requests1JSON);
+//
+//                        ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
+//                        result.add(requestsFromMe);
+//                        result.add(requestsToMe);
+//
+//                        handler.done(result);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                        handler.error(responseString);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                handler.error(responseString);
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
         });
     }
 

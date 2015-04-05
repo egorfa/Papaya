@@ -12,6 +12,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
+import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
@@ -39,6 +40,23 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
+        ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
+
+        User u = User.getCurrentUser();
+        Request.getRequestsForUser(u, new GetListHandler<ArrayList<Request>>() {
+            @Override
+            public void done(ArrayList<ArrayList<Request>> data) {
+                String tag = "REQUEST DEBUG";
+                Log.d(tag, "Dimenstions " + data.size());
+                Log.d(tag, "Dimenstion[0] " + data.get(0).size());
+                Log.d(tag, "Dimenstions[1] " + data.get(1).size());
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("REQUEST DEBUG", responseError);
+            }
+        });
 
     }
 
