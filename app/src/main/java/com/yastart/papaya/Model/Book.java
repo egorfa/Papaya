@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class Book  implements Parcelable {
 
@@ -129,6 +130,14 @@ public class Book  implements Parcelable {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray booksJSON) {
                 ArrayList<Book> books = fromJson(booksJSON);
+                ArrayList<Book> filtered = fromJson(booksJSON);
+
+                for (Iterator<Book> it = books.iterator(); it.hasNext();) {
+                    if (it.next().ownerID.equals(User.getCurrentUser().getId())) {
+                        it.remove();
+                    }
+                }
+
                 handler.done(books);
             }
 
