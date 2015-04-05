@@ -2,6 +2,13 @@ package com.yastart.papaya.Model;
 
 import com.loopj.android.http.*;
 
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+
 public class Server {
     private static final String BASE_URL = "https://papaya-dtd.appspot.com/_ah/api/papaya/v1/";
 
@@ -12,7 +19,23 @@ public class Server {
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.post(getAbsoluteUrl(url), params, responseHandler);
+        // params is a JSONObject
+        StringEntity se = null;
+        try {
+            se = new StringEntity(params.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return;
+        }
+        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+        client.post(null, getAbsoluteUrl(url), se, "application/json", responseHandler);
+    }
+
+    public static void post(String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
+        StringEntity entity = new StringEntity(params.toString());
+        entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+        client.post(null, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {

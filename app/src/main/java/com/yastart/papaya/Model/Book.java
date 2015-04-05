@@ -2,15 +2,18 @@ package com.yastart.papaya.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -41,27 +44,55 @@ public class Book  implements Parcelable {
     }
 
     public void saveBook(final VoidHandler handler) {
-        RequestParams params = new RequestParams();
-        params.put("title", ownerID);
-        params.put("description", description);
-        params.put("photo", coverUrl);
-        params.put("author", authors);
-        params.put("condition", condition);
-        params.put("owner", ownerID);
-        params.put("city", city);
+//        JSONObject jsonParams = new JSONObject();
+//        jsonParams.put("notes", "Test api support");
+//        StringEntity entity = new StringEntity(jsonParams.toString());
+//        client.post(context, restApiUrl, entity, "application/json",
+//                responseHandler);
+        JSONObject params = new JSONObject();
+        try {
+            params.put("title", ownerID);
+            params.put("description", description);
+            params.put("photo", coverUrl);
+            params.put("author", authors);
+            params.put("condition", condition);
+            params.put("owner", ownerID);
+            params.put("city", city);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        Server.post("book", params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                handler.done();
-            }
+        try {
+            Server.post("book", params, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    Log.d("A", "a");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, response);
+                }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                handler.error(responseString);
-            }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("A", "b");
+                    handler.error(errorResponse.toString());
+                }
 
-        });
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    Log.d("A", "c");
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    Log.d("A", "d");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, responseString);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            handler.error("FAILURE!");
+        }
     }
 
     public void updateBook(Book book, final VoidHandler handler) {
