@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yastart.papaya.Model.Book;
@@ -15,10 +14,6 @@ import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
-import com.yastart.papaya.adapters.MyBooksGridAdapter;
-import com.yastart.papaya.fragments.MyBooksFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by 123 on 05.04.2015.
@@ -53,7 +48,7 @@ public class BookActivity extends BaseActivity {
         book = intent.getParcelableExtra(EXTRA_BOOK);
         tvBookName.setText(book.getTitle());
         tvBookTown.setText(book.getCity());
-        tvBookCondition.setText(getResources().getStringArray(R.array.conditions)[book.getCondition()]);
+        tvBookCondition.setText(getResources().getStringArray(R.array.conditions)[book.getCondition()-1]);
         tvDescription.setText(book.getDescription());
         user_id = book.getOwnerID();
 
