@@ -12,7 +12,6 @@ import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
-import com.yastart.papaya.activities.RequestActivity;
 import com.yastart.papaya.adapters.StickyLVAdapter;
 
 import java.util.ArrayList;
@@ -55,6 +54,7 @@ public class RequestsFragment extends BaseFragment {
                     headings.add("Исходящие");
                     requests.add(data.get(0).get(i));
                 }
+
                 StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
                 exlv.setAdapter(adapter);
             }

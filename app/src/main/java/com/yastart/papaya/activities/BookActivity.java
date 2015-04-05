@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetItemHandler;
+import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
+import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 
@@ -40,6 +45,7 @@ public class BookActivity extends BaseActivity {
         TextView tvBookCondition = (TextView) findViewById(R.id.bookCondition);
         TextView tvDescription = (TextView) findViewById(R.id.bookDescription);
         tvDescription.setTypeface(Papaya.font_semibold);
+        Button btnExchange = (Button)findViewById(R.id.btnExchange);
 
         Intent intent = getIntent();
 
@@ -56,6 +62,29 @@ public class BookActivity extends BaseActivity {
                 .load(book.getCoverUrl())
                 .into(imgBook);
         //TODO загрузка фото профиля, отправившего фотографию
+
+        btnExchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Request newRequest = new Request();
+                newRequest.setInitiatorID(User.getCurrentUser().getId());
+                newRequest.setResponderID(book.getOwnerID());
+                newRequest.setBookDesiredID("5139717033033728");
+
+                newRequest.save(new VoidHandler() {
+                    @Override
+                    public void done() {
+                        Log.d("SAVED", "SAAAAVED!!!!");
+                        Toast.makeText(BookActivity.this, "Запрос отправлен пользователю", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void error(String responseError) {
+                        Log.d("ERROR", responseError);
+                    }
+                });
+            }
+        });
 
     }
 
