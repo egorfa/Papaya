@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/view_toolbar"
+        android:id="@+id/include" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="fitCenter"
+        app:riv_corner_radius="30dip"
+        app:riv_border_width="2dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="repeat"
+        app:riv_oval="true"
+        android:src="@drawable/ic_launcher"
+        android:layout_below="@+id/include"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/include"
+        android:layout_toRightOf="@+id/profile_img"
+        android:layout_toEndOf="@+id/profile_img"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Пользователь User хочет поменять вашу книгу на одну из его коллекции. "
+        android:id="@+id/dialogTxtUser"
+        android:layout_marginTop="167dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_below="@+id/include"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/user_books"
+        android:background="@color/gray_background"
+        android:layout_below="@+id/dialogTxtUser"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Decline"
+        android:id="@+id/dialogDecline"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/dialogTxtUser"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Accept"
+        android:id="@+id/dialogAccept"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/dialogTxtUser"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/imageView2"
+        android:layout_alignTop="@+id/profile_img"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView3"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_marginLeft="20dp" />
+
+
+</RelativeLayout>
