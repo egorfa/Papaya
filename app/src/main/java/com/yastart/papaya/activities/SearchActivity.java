@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.Model.GetListHandler;
@@ -134,7 +135,6 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
                             Log.d("TAG", "Error: " + responseError);
                         }
                     }
-
             );
         }
 
@@ -167,10 +167,14 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
                 startActivity(intent);
                 break;
             case R.id.market_card:
-                final int adPosition = booksList.getChildLayoutPosition(v);
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(MarketBooks.URLs[adPosition]));
-                startActivity(i);
+                int adPosition = 0;
+                String bookTitle = String.valueOf(((TextView) v.findViewById(R.id.book_name)).getText());
+                for (int i = 0; i < MarketBooks.titles.length; i++)
+                    if (bookTitle.equals(MarketBooks.titles[i]))
+                        adPosition = i;
+                Intent marketIntent = new Intent(Intent.ACTION_VIEW);
+                marketIntent.setData(Uri.parse(MarketBooks.URLs[adPosition]));
+                startActivity(marketIntent);
                 break;
         }
     }
