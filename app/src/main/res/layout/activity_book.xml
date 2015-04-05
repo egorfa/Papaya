@@ -23,7 +23,8 @@
                 android:layout_height="250dp"
                 android:id="@+id/imgDescr"
                 android:background="@color/primary_light"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@drawable/ic_launcher"
+                android:scaleType="centerCrop" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
