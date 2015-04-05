@@ -30,6 +30,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, null);
+        mContext = view.getContext();
 
         userName = (TextView) view.findViewById(R.id.tv_name);
         userContacts = (TextView) view.findViewById(R.id.tv_contacts);
@@ -47,7 +48,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
 
         ListView listFeedback = (ListView) view.findViewById(R.id.list_feedback);
 
-        FeedbackListAdapter adapter = new FeedbackListAdapter(getActivity().getBaseContext(), feedbacks);
+        FeedbackListAdapter adapter = new FeedbackListAdapter(mContext, feedbacks);
         listFeedback.setAdapter(adapter);
 
         return view;

@@ -213,7 +213,8 @@ public class Request implements Parcelable {
 
             r.id = jsonObject.getString("id");
 
-            r.initiatorID = jsonObject.getString("user_id_from"); // which id should be? from or to?
+            r.initiatorID = jsonObject.getString("user_id_from");
+            r.responderID = jsonObject.getString("user_id_to");
 
         } catch (JSONException e) {
             e.printStackTrace();

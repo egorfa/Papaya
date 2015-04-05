@@ -41,8 +41,8 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         list = (RecyclerView) view.findViewById(R.id.search_books_list);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
-        list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
-        list.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL_LIST));
+        list.setLayoutManager(new LinearLayoutManager(mContext));
+        list.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
 
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(this);
@@ -76,7 +76,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             public void done(ArrayList<Book> data) {
                 refreshLayout.setRefreshing(false);
                 books = data;
-                list.setAdapter(new ProfileBooksListAdapter(getActivity().getBaseContext(), books, SearchFragment.this));
+                list.setAdapter(new ProfileBooksListAdapter(mContext, books, SearchFragment.this));
             }
 
             @Override

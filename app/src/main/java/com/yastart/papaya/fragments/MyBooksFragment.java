@@ -86,7 +86,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
             case R.id.book_cell:
                 final int position = grid.getChildLayoutPosition(v);
 //                Toast.makeText(mContext, "Pressed " + position, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
+                Intent intent = new Intent(mContext, BookActivity.class);
                 intent.putExtra(BookActivity.EXTRA_BOOK, books.get(position));
                 intent.putExtra(BookActivity.EXTRA_IS_CURRENT_USER_BOOK, true);
                 startActivity(intent);
