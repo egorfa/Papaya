@@ -12,6 +12,7 @@ import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.Model.Request;
 import com.yastart.papaya.Model.User;
 import com.yastart.papaya.R;
+import com.yastart.papaya.activities.RequestActivity;
 import com.yastart.papaya.adapters.StickyLVAdapter;
 
 import java.util.ArrayList;
@@ -65,10 +66,15 @@ public class RequestsFragment extends BaseFragment {
             }
         });
 
+
+
+
         exlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(getActivity(), RequestActivity.class);
+                intent.putExtra("request", requests.get(i));
+                startActivity(intent);
             }
         });
 

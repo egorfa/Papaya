@@ -213,7 +213,8 @@ public class Request implements Parcelable {
 
             r.id = jsonObject.getString("id");
 
-            r.initiatorID = jsonObject.getString("user_id_from"); // which id should be? from or to?
+            r.initiatorID = jsonObject.getString("user_id_from");
+            r.responderID = jsonObject.getString("user_id_to");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -320,14 +321,14 @@ public class Request implements Parcelable {
 
     // упаковываем объект в Parcel
     public void writeToParcel(Parcel parcel, int flags) {
-        /*parcel.writeString(id);
-        parcel.writeString(city);
-        parcel.writeString(ownerID);
-        parcel.writeString(description);
-        parcel.writeString(title);
-        parcel.writeString(authors);
-        parcel.writeString(coverUrl);
-        parcel.writeInt(condition);*/
+        parcel.writeString(id);
+        parcel.writeString(initiatorID);
+        parcel.writeString(responderID);
+        parcel.writeByte((byte) (initiatorApproved ? 1 : 0));
+        parcel.writeByte((byte) (initiatorApproved ? 1 : 0));
+        parcel.writeInt(status.getValue());
+        parcel.writeString(bookDesiredID);
+        parcel.writeString(bookInReturnID);
 
     }
 
@@ -343,14 +344,22 @@ public class Request implements Parcelable {
     };
 
     private Request(Parcel parcel) {
-        /*id = parcel.readString();
-        city = parcel.readString();
-        ownerID = parcel.readString();
-        description = parcel.readString();
-        title = parcel.readString();
-        authors = parcel.readString();
-        coverUrl = parcel.readString();
-        condition = parcel.readInt();*/
+        id = parcel.readString();
+        initiatorID = parcel.readString();
+        responderID = parcel.readString();
+        initiatorApproved = parcel.readByte() != 0;
+        responderApproved = parcel.readByte() != 0;
+        switch(parcel.readInt())
+        {
+            case 1:
+                status = State.PROCESSING;
+                break;
+            case 2:
+                status = State.WAITS_APPROVAL;
+                break;
+        }
+        bookDesiredID = parcel.readString();
+        bookInReturnID = parcel.readString();
     }
 
 }

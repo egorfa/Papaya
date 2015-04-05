@@ -99,6 +99,7 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onRefresh() {
+        refreshLayout.setRefreshing(true);
         loadBooks();
     }
 }
