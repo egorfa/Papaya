@@ -10,10 +10,7 @@ import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
-import com.yastart.papaya.Model.User;
-import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
@@ -60,7 +57,7 @@ public class MainActivity extends BaseActivity {
         Book.findBookByStr("Jx", new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
-                Log.d("TEST", ""+data.size());
+                Log.d("TEST", "" + data.size());
             }
 
             @Override

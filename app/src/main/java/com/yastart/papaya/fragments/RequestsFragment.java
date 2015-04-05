@@ -2,6 +2,7 @@ package com.yastart.papaya.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 public class RequestsFragment extends BaseFragment {
 
     ArrayList<String> headings;
-    ArrayList<String> requests;
+    ArrayList<Request> requests;
 
     public static RequestsFragment newInstance() {
         RequestsFragment pageFragment = new RequestsFragment();
@@ -46,25 +47,25 @@ public class RequestsFragment extends BaseFragment {
                 Log.d(tag, "Dimenstions " + data.size());
                 Log.d(tag, "Dimenstion[0] " + data.get(0).size());
                 Log.d(tag, "Dimenstions[1] " + data.get(1).size());
-                for(int i = 0; i < data.get(1).size(); i++){
+                for (int i = 0; i < data.get(1).size(); i++) {
                     headings.add("Входящие");
                     requests.add(data.get(1).get(i));
                 }
-                for(int i = 0; i < data.get(0).size(); i++){
+                for (int i = 0; i < data.get(0).size(); i++) {
                     headings.add("Исходящие");
                     requests.add(data.get(0).get(i));
                 }
-
-        requests.add("Oxuenno");
-        requests.add("Oxuenno");
-        requests.add("Oxuenno");
-        requests.add("Oxuenno");
+            }
 
             @Override
             public void error(String responseError) {
                 Log.d("REQUEST DEBUG", responseError);
             }
         });
+
+        final StickyListHeadersListView exlv = (StickyListHeadersListView) view.findViewById(R.id.ex_lv);
+        StickyLVAdapter adapter = new StickyLVAdapter(getActivity().getBaseContext(), headings, requests);
+        exlv.setAdapter(adapter);
 
 
         exlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
