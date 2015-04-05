@@ -27,9 +27,9 @@
         android:layout_marginLeft="20dp" />
 
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView"
+        android:id="@+id/img_desired"
         android:layout_below="@+id/include"
         android:layout_toRightOf="@+id/profile_img"
         android:layout_toEndOf="@+id/profile_img"
@@ -41,61 +41,83 @@
         android:layout_height="wrap_content"
         android:text="Пользователь User хочет поменять вашу книгу на одну из его коллекции. "
         android:id="@+id/dialogTxtUser"
-        android:layout_marginTop="167dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/profile_img"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
+        android:layout_alignRight="@+id/img_in_return"
+        android:layout_alignEnd="@+id/img_in_return"
+        android:layout_marginTop="20dp" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:id="@+id/user_books"
-        android:background="@color/gray_background"
+        android:background="#fff"
         android:layout_below="@+id/dialogTxtUser"
-        android:layout_margin="10dp" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="Decline"
-        android:id="@+id/dialogDecline"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/dialogTxtUser"
-        android:layout_marginBottom="20dp"/>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="Accept"
-        android:id="@+id/dialogAccept"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/dialogTxtUser"
-        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_above="@+id/LL_buttons" />
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/img_exchange"
         android:layout_alignTop="@+id/profile_img"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/img_desired"
+        android:layout_toEndOf="@+id/img_desired"
         android:layout_marginTop="21dp"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_exchange" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView3"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView2"
+        android:id="@+id/img_in_return"
+        android:layout_alignTop="@+id/img_desired"
+        android:layout_toRightOf="@+id/img_exchange"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/question" />
+        android:src="@drawable/question"
+        android:layout_marginRight="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/user_books"
+        android:layout_alignRight="@+id/user_books"
+        android:id="@+id/LL_buttons">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decline"
+            android:id="@+id/dialogDecline"
+            android:layout_alignParentBottom="false"
+            android:layout_weight="1"
+            android:background="@color/gray_background"
+            android:textColor="#000" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept"
+            android:id="@+id/dialogAccept"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_weight="1"
+            android:background="@color/primary_light"
+            android:textColor="#000" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

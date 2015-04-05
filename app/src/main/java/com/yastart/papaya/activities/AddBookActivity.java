@@ -24,6 +24,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.SaveCallback;
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.User;
 import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.dialogs.PhotoPickerDialog;

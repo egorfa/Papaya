@@ -348,7 +348,15 @@ public class Request implements Parcelable {
         responderID = parcel.readString();
         initiatorApproved = parcel.readByte() != 0;
         responderApproved = parcel.readByte() != 0;
-        status.value = parcel.readInt();
+        switch(parcel.readInt())
+        {
+            case 1:
+                status = State.PROCESSING;
+                break;
+            case 2:
+                status = State.WAITS_APPROVAL;
+                break;
+        }
         bookDesiredID = parcel.readString();
         bookInReturnID = parcel.readString();
     }
