@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yastart.papaya.Papaya;
 import com.yastart.papaya.R;
 
 /**
@@ -18,6 +19,7 @@ public class FeedBackViewHolder {
 
         profileImage = (ImageView) itemView.findViewById(R.id.book_image);
         feedbackTv = (TextView) itemView.findViewById(R.id.feedback_textview);
+        feedbackTv.setTypeface(Papaya.font_semibold);
 
         itemView.setOnClickListener(listener);
     }

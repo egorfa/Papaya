@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.yastart.papaya.Model.FeedBack;
@@ -31,9 +30,9 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
 
 
         ArrayList<FeedBack> feedbacks = new ArrayList<>();
-        for(int i=0;i<10;i++)
+        for(int i=0;i<4;i++)
         {
-            FeedBack feedback = new FeedBack(null, null, "говно");
+            FeedBack feedback = new FeedBack(null, null, "Спасибо за книгу! Быстро договорились и обменялись. Качество книги соответствует указанному.");
             feedbacks.add(feedback);
         }
 
