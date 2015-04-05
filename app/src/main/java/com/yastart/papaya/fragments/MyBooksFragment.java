@@ -51,9 +51,11 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void loadBooks() {
-        User user = User.getCurrentUser();
+//        User user = User.getCurrentUser();
+
+        User user = new User();
 //        user.setId("102363055574899025750");
-//        user.setId("117211419728589565827");
+        user.setId("117211419728589565827");
         Book.getBooksForUser(user, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {

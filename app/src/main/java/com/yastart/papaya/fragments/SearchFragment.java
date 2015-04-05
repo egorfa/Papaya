@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yastart.papaya.Model.Book;
@@ -20,14 +19,11 @@ import com.yastart.papaya.adapters.ProfileBooksListAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by 123 on 04.04.2015.
- */
 public class SearchFragment extends BaseFragment implements View.OnClickListener {
 
+    View search;
     RecyclerView list;
     ArrayList<Book> books;
-    EditText search;
 
     public static SearchFragment newInstance() {
         SearchFragment pageFragment = new SearchFragment();
@@ -39,7 +35,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, null);
 
-        search = (EditText) view.findViewById(R.id.textSearch);
+        search = view.findViewById(R.id.find_books_layout);
 
         ArrayList<Book> Books = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -56,7 +52,8 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         list.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL_LIST));
 
-        list.setAdapter(new ProfileBooksListAdapter(getActivity().getBaseContext(), Books, this));
+        list.setAdapter(new
+                ProfileBooksListAdapter(getActivity().getBaseContext(), books, this));
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
