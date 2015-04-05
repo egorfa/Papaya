@@ -85,7 +85,8 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             case R.id.book_search:
                 final int position = list.getChildLayoutPosition(v);
                 Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
-                intent.putExtra("book", books.get(position));
+                intent.putExtra(BookActivity.EXTRA_BOOK, books.get(position));
+                intent.putExtra(BookActivity.EXTRA_IS_CURRENT_USER_BOOK, false);
                 startActivity(intent);
                 // TODO startBookActivity
                 break;

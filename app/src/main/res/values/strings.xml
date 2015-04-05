@@ -27,4 +27,9 @@
     <string name="image_not_uploaded">Изображение еще не загружено</string>
     <string name="all_fields_required">Не все поля заполнены</string>
     <string name="find_book">Найти книгу</string>
+    <string name="share">Поделиться</string>
+    <string name="share_body_text">Хочу поменяться книгой</string>
+    <string name="with_papaya">через Papaya.</string>
+    <string name="book_in_papaya">Книга в Papaya</string>
+    <string name="share_via">Отправить в</string>
 </resources>
