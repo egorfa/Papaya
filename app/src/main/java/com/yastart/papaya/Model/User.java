@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class User {
     private static User currentUser;
 
-    private String internal_id; // used in operations with user objects (delete, update) if any
     private String id; // Test user id 102363055574899025750
     private String username;
     private String email;
@@ -50,12 +49,11 @@ public class User {
         User u = new User();
         // Deserialize json into object fields
         try {
-            u.id = jsonObject.getString("user_id");
+            u.id = jsonObject.getString("id");
             u.username = jsonObject.getString("username");
-            u.email = jsonObject.getString("id");
+            u.email = jsonObject.getString("mail");
 //            u.contacts = jsonObject.getString("");
             u.city = jsonObject.getString("city");
-            u.internal_id = jsonObject.getString("id");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -125,7 +123,12 @@ public class User {
         if (currentUser != null) { return currentUser; }
 
         currentUser = new User();
-        currentUser.setId("102363055574899025750");
+        currentUser.setId("117211419728589565827");
         return currentUser;
+    }
+
+    @Override
+    public String toString() {
+        return "username = " + username + " " + " id = " + id;
     }
 }

@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.yastart.papaya.Model.Book;
@@ -51,9 +50,11 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void loadBooks() {
-        User user = User.getCurrentUser();
+//        User user = User.getCurrentUser();
+
+        User user = new User();
 //        user.setId("102363055574899025750");
-//        user.setId("117211419728589565827");
+        user.setId("117211419728589565827");
         Book.getBooksForUser(user, new GetListHandler<Book>() {
             @Override
             public void done(ArrayList<Book> data) {
@@ -73,7 +74,6 @@ public class MyBooksFragment extends BaseFragment implements View.OnClickListene
         switch (v.getId()) {
             case R.id.book_cell:
                 final int position = grid.getChildLayoutPosition(v);
-                Toast.makeText(mContext, "Pressed " + position, Toast.LENGTH_SHORT).show();
                 // TODO startBookActivity
                 break;
             case R.id.add_book_button:

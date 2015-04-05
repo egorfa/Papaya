@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
@@ -42,7 +41,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             Book book = new Book();
             book.setTitle("Заголовок" + String.valueOf(i));
             book.setAuthors("Автор");
-            books.add(book);
+            Books.add(book);
         }
         books = Books;
 
@@ -71,7 +70,6 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.book_search:
                 final int position = list.getChildLayoutPosition(v);
-                Toast.makeText(getActivity().getBaseContext(), "Pressed " + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
                 intent.putExtra("book", books.get(position));
                 startActivity(intent);
