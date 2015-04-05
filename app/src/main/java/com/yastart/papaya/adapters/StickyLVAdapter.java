@@ -1,6 +1,7 @@
 package com.yastart.papaya.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
 
                 @Override
                 public void error(String responseError) {
-
+                    Log.d("TEST", responseError);
                 }
             });
         }
