@@ -40,33 +40,49 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
+//        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
+//            @Override
+//            public void done(Book book) {
+//                Request newRequest = new Request();
+//                newRequest.setInitiatorID(User.getCurrentUser().getId());
+//                newRequest.setResponderID(book.getOwnerID());
+//                newRequest.setBookDesiredID(book.getId());
+//
+//                newRequest.save(new VoidHandler() {
+//                    @Override
+//                    public void done() {
+//                        Log.d("SAVED", "SAAAAVED!!!!");
+//                    }
+//
+//                    @Override
+//                    public void error(String responseError) {
+//                        Log.d("ERROR", responseError);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void error(String responseError) {
+//                Log.d("ERROR", responseError);
+//            }
+//        });
+
+        Request newRequest = new Request();
+        newRequest.setInitiatorID(User.getCurrentUser().getId());
+        newRequest.setResponderID("117211419728589565827");
+        newRequest.setBookDesiredID("5139717033033728");
+
+        newRequest.save(new VoidHandler() {
             @Override
-            public void done(Book book) {
-                Request newRequest = new Request();
-                newRequest.setInitiatorID(User.getCurrentUser().getId());
-                newRequest.setResponderID(book.getOwnerID());
-                newRequest.setBookDesiredID(book.getId());
-
-                newRequest.save(new VoidHandler() {
-                    @Override
-                    public void done() {
-                        Log.d("SAVED", "SAAAAVED!!!!");
-                    }
-
-                    @Override
-                    public void error(String responseError) {
-                        Log.d("ERROR", responseError);
-                    }
-                });
+            public void done() {
+                Log.d("SAVED", "SAAAAVED!!!!");
             }
 
             @Override
             public void error(String responseError) {
-//                Log.d
+                Log.d("ERROR", responseError);
             }
         });
-
     }
 
     @Override

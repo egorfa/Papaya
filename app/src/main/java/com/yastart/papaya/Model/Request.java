@@ -43,10 +43,24 @@ public class Request {
     private String bookDesiredID;
     private String bookInReturnID;
 
-//    public Request(Book bookDesired, User initiator) {
-//        this.bookDesired = bookDesired;
-//        this.initiator   = initiator;
-//    }
+    /*
+        Request newRequest = new Request();
+        newRequest.setInitiatorID(User.getCurrentUser().getId());
+        newRequest.setResponderID("117211419728589565827");
+        newRequest.setBookDesiredID("5139717033033728");
+
+        newRequest.save(new VoidHandler() {
+            @Override
+            public void done() {
+                Log.d("SAVED", "SAAAAVED!!!!");
+            }
+
+            @Override
+            public void error(String responseError) {
+                Log.d("ERROR", responseError);
+            }
+        });
+    */
 
     public void save(final VoidHandler handler) {
         JSONObject params = new JSONObject();
@@ -60,6 +74,12 @@ public class Request {
 
         try {
             Server.post("request", params, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    // If the response is JSONObject instead of expected JSONArray
+                    handler.done();
+                }
+
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                     Log.d("A", "a");
