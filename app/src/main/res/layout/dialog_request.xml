@@ -52,7 +52,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:text="Decline"
+        android:text="Accept"
         android:id="@+id/dialogAccept"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/dialogTxtUser"

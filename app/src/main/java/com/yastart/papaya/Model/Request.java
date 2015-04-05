@@ -1,5 +1,7 @@
 package com.yastart.papaya.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -16,7 +18,11 @@ import java.util.ArrayList;
 /**
  * Created by makazone on 04.04.15.
  */
-public class Request {
+public class Request implements Parcelable {
+    public Request() {
+
+    }
+
     public enum State {
         PROCESSING(1), WAITS_APPROVAL(2);
 
@@ -37,7 +43,7 @@ public class Request {
     private boolean initiatorApproved;
     private boolean responderApproved;
 
-    private State status;
+    private State  status;
 
     // Exchange bookA on bookB
     private String bookDesiredID;
@@ -307,4 +313,44 @@ public class Request {
     public void setBookInReturnID(String bookInReturnID) {
         this.bookInReturnID = bookInReturnID;
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    // упаковываем объект в Parcel
+    public void writeToParcel(Parcel parcel, int flags) {
+        /*parcel.writeString(id);
+        parcel.writeString(city);
+        parcel.writeString(ownerID);
+        parcel.writeString(description);
+        parcel.writeString(title);
+        parcel.writeString(authors);
+        parcel.writeString(coverUrl);
+        parcel.writeInt(condition);*/
+
+    }
+
+    public static final Parcelable.Creator<Request> CREATOR = new Parcelable.Creator<Request>() {
+        // распаковываем объект из Parcel
+        public Request createFromParcel(Parcel in) {
+            return new Request(in);
+        }
+
+        public Request[] newArray(int size) {
+            return new Request[size];
+        }
+    };
+
+    private Request(Parcel parcel) {
+        /*id = parcel.readString();
+        city = parcel.readString();
+        ownerID = parcel.readString();
+        description = parcel.readString();
+        title = parcel.readString();
+        authors = parcel.readString();
+        coverUrl = parcel.readString();
+        condition = parcel.readInt();*/
+    }
+
 }

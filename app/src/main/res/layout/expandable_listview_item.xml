@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="@dimen/default_padding">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
+        android:layout_width="@dimen/user_pic_size"
+        android:layout_height="@dimen/user_pic_size"
         android:id="@+id/imgLvItem"
-        app:riv_corner_radius="30dip"
-        app:riv_border_width="2dip"
-        app:riv_border_color="#333333"
         app:riv_mutate_background="true"
         app:riv_tile_mode="repeat"
         app:riv_oval="true"
-        android:src="@drawable/ic_launcher"/>
-    
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center_vertical"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Пользователь %username% предлагает вам обменяться книгой"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@+id/imgLvItem"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_alignTop="@+id/imgLvItem"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:id="@+id/lv_message"/>
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/primary_text"
+        android:id="@+id/lv_message"
+        android:layout_gravity="center_vertical"/>
 
-</RelativeLayout>
+</LinearLayout>

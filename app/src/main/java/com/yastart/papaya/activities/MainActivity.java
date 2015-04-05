@@ -10,11 +10,7 @@ import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yastart.papaya.Model.Book;
-import com.yastart.papaya.Model.GetItemHandler;
 import com.yastart.papaya.Model.GetListHandler;
-import com.yastart.papaya.Model.Request;
-import com.yastart.papaya.Model.User;
-import com.yastart.papaya.Model.VoidHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.fragments.MyBooksFragment;
 import com.yastart.papaya.fragments.MyProfileFragment;
@@ -40,18 +36,6 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-        Request.getRequestsForUser(User.getCurrentUser(), new GetListHandler<ArrayList<Request>>() {
-            @Override
-            public void done(ArrayList<ArrayList<Request>> data) {
-                Log.d("TEST", data.toString());
-                System.out.println("HELLO");
-            }
-
-            @Override
-            public void error(String responseError) {
-                System.out.println("NO!");
-            }
-        });
 
 //        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
 //            @Override
