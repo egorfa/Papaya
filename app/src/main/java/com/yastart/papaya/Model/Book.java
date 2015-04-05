@@ -51,7 +51,7 @@ public class Book  implements Parcelable {
 //                responseHandler);
         JSONObject params = new JSONObject();
         try {
-            params.put("title", ownerID);
+            params.put("title", title);
             params.put("description", description);
             params.put("photo", coverUrl);
             params.put("author", authors);
@@ -98,7 +98,7 @@ public class Book  implements Parcelable {
     public void updateBook(Book book, final VoidHandler handler) {
         RequestParams params = new RequestParams();
         params.put("id", book.id);
-        params.put("title", book.ownerID);
+        params.put("title", book.title);
         params.put("description", book.description);
         params.put("photo", book.coverUrl);
         params.put("author", book.authors);
