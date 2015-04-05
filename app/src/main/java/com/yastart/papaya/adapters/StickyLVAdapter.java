@@ -80,7 +80,7 @@ public class StickyLVAdapter extends BaseAdapter implements StickyListHeadersAda
     @Override
     public long getHeaderId(int position) {
         //return the first character of the country as ID because this is what headers are based upon
-        return position;
+        return headings.get(position).subSequence(0, 1).charAt(0);
     }
 
     class HeaderViewHolder {

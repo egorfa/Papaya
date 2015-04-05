@@ -30,8 +30,12 @@ public class RequestsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_requests, null);
 
+        headings = new ArrayList<String>();
+        requests = new ArrayList<String>();
+
         headings.add("Входящие");
         headings.add("Входящие");
+        headings.add("Исходящие");
         headings.add("Исходящие");
         headings.add("Исходящие");
 
