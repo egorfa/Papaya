@@ -1,19 +1,23 @@
 package com.yastart.papaya.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import com.yastart.papaya.Model.Book;
+import com.yastart.papaya.Model.GetListHandler;
 import com.yastart.papaya.R;
 import com.yastart.papaya.adapters.DividerItemDecoration;
+import com.yastart.papaya.adapters.MarketAdapter;
 import com.yastart.papaya.adapters.ProfileBooksListAdapter;
 
 import java.util.ArrayList;
@@ -22,6 +26,7 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
 
     private RecyclerView booksList;
     private ArrayList<Book> books;
+    private EditText searchField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,7 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
 
         books = new ArrayList<>();
 
-        final EditText searchField = (EditText) findViewById(R.id.editSearch);
+        searchField = (EditText) findViewById(R.id.editSearch);
         searchField.addTextChangedListener(this);
 
         booksList = (RecyclerView) findViewById(R.id.search_books_list);
@@ -80,11 +85,75 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
         // do nothing
     }
 
+    public static class MarketBooks {
+        public static String[] titles = {
+                "Война и мир",
+                "Философия Java",
+                "Программирование для Android"
+        };
+
+        public static String[] authors = {
+                "Л.Н. Толстой",
+                "Б. Эккель",
+                "А. Голощапов"
+        };
+
+        public static String[] prices = {
+                "1180 р.",
+                "630 р.",
+                "565 р."
+        };
+
+        public static String[] URLs = {
+                "http://market.yandex.ru/product/4799651/?hid&show-uid=399751814282240941",
+                "http://market.yandex.ru/product/10727012/?hid&show-uid=309929414282241181",
+                "http://market.yandex.ru/product/9733702/?hid&show-uid=108432214282241802"
+        };
+    }
+
     @Override
     public void afterTextChanged(Editable s) {
-        // TODO
-        final String searchString = s.toString();
-        booksList.setAdapter(new ProfileBooksListAdapter(mContext, books, this));
+        final String searchString = s.toString().trim();
+        int index = containedInMarketBooks(searchString);
+
+        if (searchString.isEmpty()) {
+            books.clear();
+            booksList.setAdapter(new ProfileBooksListAdapter(mContext, books, SearchActivity.this));
+        } else if (searchString.length() >= 3 && index != -1) {
+            booksList.setAdapter(new MarketAdapter(index, this));
+        } else {
+            Book.findBookByStr(searchString, new GetListHandler<Book>() {
+                        @Override
+                        public void done(ArrayList<Book> data) {
+                            books = data;
+                            booksList.setAdapter(new ProfileBooksListAdapter(mContext, books, SearchActivity.this));
+                        }
+
+                        @Override
+                        public void error(String responseError) {
+                            Log.d("TAG", "Error: " + responseError);
+                        }
+                    }
+
+            );
+        }
+
+    }
+
+    private int containedInMarketBooks(String searchString) {
+        for (int i = 0; i < MarketBooks.titles.length; i++) {
+            if (MarketBooks.titles[i].toLowerCase().contains(searchString.toLowerCase())) {
+                return i;
+            }
+        }
+
+        for (int i = 0; i < MarketBooks.authors.length; i++) {
+            if (MarketBooks.authors[i].toLowerCase().contains(searchString.toLowerCase())) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
@@ -96,6 +165,12 @@ public class SearchActivity extends BaseActivity implements TextWatcher, View.On
                 intent.putExtra(BookActivity.EXTRA_BOOK, books.get(position));
                 intent.putExtra(BookActivity.EXTRA_IS_CURRENT_USER_BOOK, false);
                 startActivity(intent);
+                break;
+            case R.id.market_card:
+                final int adPosition = booksList.getChildLayoutPosition(v);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(MarketBooks.URLs[adPosition]));
+                startActivity(i);
                 break;
         }
     }
