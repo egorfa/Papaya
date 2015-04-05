@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -47,9 +48,47 @@ public class Request {
 //        this.initiator   = initiator;
 //    }
 
-    public void save(VoidHandler handler) {
-        RequestParams params = new RequestParams();
-//        params.put("");
+    public void save(final VoidHandler handler) {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("book_id_to", bookDesiredID);
+            params.put("user_id_from", initiatorID);
+            params.put("user_id_to", responderID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Server.post("request", params, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    Log.d("A", "a");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, response);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("A", "b");
+                    handler.error(errorResponse.toString());
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    Log.d("A", "c");
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    Log.d("A", "d");
+                    handler.done();
+                    super.onSuccess(statusCode, headers, responseString);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            handler.error("FAILURE!");
+        }
     }
 
     /**
@@ -183,5 +222,69 @@ public class Request {
         }
 
         return requests;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getInitiatorID() {
+        return initiatorID;
+    }
+
+    public String getResponderID() {
+        return responderID;
+    }
+
+    public boolean isInitiatorApproved() {
+        return initiatorApproved;
+    }
+
+    public boolean isResponderApproved() {
+        return responderApproved;
+    }
+
+    public State getStatus() {
+        return status;
+    }
+
+    public String getBookDesiredID() {
+        return bookDesiredID;
+    }
+
+    public String getBookInReturnID() {
+        return bookInReturnID;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setInitiatorID(String initiatorID) {
+        this.initiatorID = initiatorID;
+    }
+
+    public void setResponderID(String responderID) {
+        this.responderID = responderID;
+    }
+
+    public void setInitiatorApproved(boolean initiatorApproved) {
+        this.initiatorApproved = initiatorApproved;
+    }
+
+    public void setResponderApproved(boolean responderApproved) {
+        this.responderApproved = responderApproved;
+    }
+
+    public void setStatus(State status) {
+        this.status = status;
+    }
+
+    public void setBookDesiredID(String bookDesiredID) {
+        this.bookDesiredID = bookDesiredID;
+    }
+
+    public void setBookInReturnID(String bookInReturnID) {
+        this.bookInReturnID = bookInReturnID;
     }
 }
