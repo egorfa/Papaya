@@ -40,24 +40,49 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
-        ArrayList<ArrayList<Request>> result = new ArrayList<ArrayList<Request>>();
+//        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
+//            @Override
+//            public void done(Book book) {
+//                Request newRequest = new Request();
+//                newRequest.setInitiatorID(User.getCurrentUser().getId());
+//                newRequest.setResponderID(book.getOwnerID());
+//                newRequest.setBookDesiredID(book.getId());
+//
+//                newRequest.save(new VoidHandler() {
+//                    @Override
+//                    public void done() {
+//                        Log.d("SAVED", "SAAAAVED!!!!");
+//                    }
+//
+//                    @Override
+//                    public void error(String responseError) {
+//                        Log.d("ERROR", responseError);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void error(String responseError) {
+//                Log.d("ERROR", responseError);
+//            }
+//        });
 
-        User u = User.getCurrentUser();
-        Request.getRequestsForUser(u, new GetListHandler<ArrayList<Request>>() {
+        Request newRequest = new Request();
+        newRequest.setInitiatorID(User.getCurrentUser().getId());
+        newRequest.setResponderID("117211419728589565827");
+        newRequest.setBookDesiredID("5139717033033728");
+
+        newRequest.save(new VoidHandler() {
             @Override
-            public void done(ArrayList<ArrayList<Request>> data) {
-                String tag = "REQUEST DEBUG";
-                Log.d(tag, "Dimenstions " + data.size());
-                Log.d(tag, "Dimenstion[0] " + data.get(0).size());
-                Log.d(tag, "Dimenstions[1] " + data.get(1).size());
+            public void done() {
+                Log.d("SAVED", "SAAAAVED!!!!");
             }
 
             @Override
             public void error(String responseError) {
-                Log.d("REQUEST DEBUG", responseError);
+                Log.d("ERROR", responseError);
             }
         });
-
     }
 
     @Override

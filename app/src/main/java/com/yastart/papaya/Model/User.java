@@ -120,7 +120,7 @@ public class User {
      * @return
      */
     public static User getCurrentUser() {
-        if (currentUser != null) { return currentUser; }
+//        if (currentUser != null) { return currentUser; }
 
         currentUser = new User();
         currentUser.setId("5636318331666432");
