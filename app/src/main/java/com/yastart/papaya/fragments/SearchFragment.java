@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
@@ -19,12 +18,9 @@ import com.yastart.papaya.adapters.ProfileBooksListAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by 123 on 04.04.2015.
- */
 public class SearchFragment extends BaseFragment implements View.OnClickListener {
 
-    EditText search;
+    View search;
 
     public static SearchFragment newInstance() {
         SearchFragment pageFragment = new SearchFragment();
@@ -36,14 +32,14 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, null);
 
-        search = (EditText) view.findViewById(R.id.textSearch);
+        search = view.findViewById(R.id.find_books_layout);
 
-        ArrayList<Book> Books = new ArrayList<>();
+        ArrayList<Book> books = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Book book = new Book();
             book.setTitle("Заголовок" + String.valueOf(i));
             book.setAuthors("Автор");
-            Books.add(book);
+            books.add(book);
         }
 
         final RecyclerView list = (RecyclerView) view.findViewById(R.id.listView1);
@@ -52,7 +48,8 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         list.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL_LIST));
 
-        list.setAdapter(new ProfileBooksListAdapter(getActivity().getBaseContext(), Books, this));
+        list.setAdapter(new
+                ProfileBooksListAdapter(getActivity().getBaseContext(), books, this));
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override

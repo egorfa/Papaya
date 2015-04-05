@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/gray_background">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/rlSearch"
-        android:background="@color/gray_light">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgSearch"
-            android:layout_centerVertical="true"
-            android:layout_alignBottom="@+id/textSearch"
-            android:layout_alignTop="@+id/textSearch"/>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="4dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:id="@+id/find_books"
             android:hint="@string/find_book"
-            android:id="@+id/textSearch"
-            android:background="@color/white"
-            android:gravity="center"
-            android:focusable="false"
             android:drawableLeft="@drawable/ic_find_book"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"/>
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:gravity="center"
+            android:enabled="false"
+            android:background="@color/white"/>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/find_books_layout">
+        </LinearLayout>
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView1"
-        android:layout_below="@+id/rlSearch"
-        android:layout_alignParentBottom="true"
         android:background="@color/gray_background"/>
 
-</RelativeLayout>
+</LinearLayout>
