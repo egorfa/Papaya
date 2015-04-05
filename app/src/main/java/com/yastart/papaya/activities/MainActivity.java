@@ -40,6 +40,19 @@ public class MainActivity extends BaseActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerTitleStrip);
         tabs.setViewPager(pager);
 
+        Request.getRequestsForUser(User.getCurrentUser(), new GetListHandler<ArrayList<Request>>() {
+            @Override
+            public void done(ArrayList<ArrayList<Request>> data) {
+                Log.d("TEST", data.toString());
+                System.out.println("HELLO");
+            }
+
+            @Override
+            public void error(String responseError) {
+                System.out.println("NO!");
+            }
+        });
+
 //        Book.getBookByID("5139717033033728", new GetItemHandler<Book>() {
 //            @Override
 //            public void done(Book book) {
@@ -84,17 +97,17 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 
-        Book.findBookByStr("Jx", new GetListHandler<Book>() {
-            @Override
-            public void done(ArrayList<Book> data) {
-                Log.d("TEST", ""+data.size());
-            }
-
-            @Override
-            public void error(String responseError) {
-
-            }
-        });
+//        Book.findBookByStr("Jx", new GetListHandler<Book>() {
+//            @Override
+//            public void done(ArrayList<Book> data) {
+//                Log.d("TEST", ""+data.size());
+//            }
+//
+//            @Override
+//            public void error(String responseError) {
+//
+//            }
+//        });
     }
 
     @Override
