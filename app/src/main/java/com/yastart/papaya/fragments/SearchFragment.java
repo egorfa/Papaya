@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+=======
+import android.widget.EditText;
+import android.widget.Toast;
+>>>>>>> 250d97393e05d3c616c0007b2c2ea79ed19208f6
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
@@ -21,6 +26,8 @@ import java.util.ArrayList;
 public class SearchFragment extends BaseFragment implements View.OnClickListener {
 
     View search;
+    RecyclerView list;
+    ArrayList<Book> books;
 
     public static SearchFragment newInstance() {
         SearchFragment pageFragment = new SearchFragment();
@@ -41,8 +48,9 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             book.setAuthors("Автор");
             books.add(book);
         }
+        books = Books;
 
-        final RecyclerView list = (RecyclerView) view.findViewById(R.id.listView1);
+        list = (RecyclerView) view.findViewById(R.id.listView1);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
@@ -64,7 +72,15 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
-        startActivity(intent);
+        switch (v.getId()) {
+            case R.id.book_search:
+                final int position = list.getChildLayoutPosition(v);
+                Toast.makeText(getActivity().getBaseContext(), "Pressed " + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity().getBaseContext(), BookActivity.class);
+                intent.putExtra("book", books.get(position));
+                startActivity(intent);
+                // TODO startBookActivity
+                break;
+        }
     }
 }

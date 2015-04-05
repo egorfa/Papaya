@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Book {
+public class Book  implements Parcelable {
 
     private String id;
     private String city;
@@ -32,28 +32,9 @@ public class Book {
 
     private int condition;
 
-    /*
-        Book newBook = new Book();
-        newBook.setAuthors("Makar");
-        newBook.setTitle("My super new book");
-        newBook.setDescription("Rather elaborate description");
-        newBook.setCity("Moscow");
-        newBook.setCoverUrl("https://ru.wikipedia.org/wiki/Яндекс.Книга");
-        newBook.setCondition(Book.EXCELLENT);
-        newBook.setOwnerID(u.getId());
+    public Book() {
 
-        newBook.saveBook(new VoidHandler() {
-            @Override
-            public void done() {
-                Log.d("DB TEST", "BOOK HAS BEEN SAVED");
-            }
-
-            @Override
-            public void error(String responseError) {
-                Log.d("DB TEST", "BOOK HASN'T SAVED " + responseError);
-            }
-        });
-     */
+    }
 
     public void saveBook(final VoidHandler handler) {
         RequestParams params = new RequestParams();
@@ -63,6 +44,7 @@ public class Book {
         params.put("author", authors);
         params.put("condition", condition);
         params.put("owner", ownerID);
+        params.put("city", city);
 
         Server.post("book", params, new JsonHttpResponseHandler() {
             @Override
@@ -87,6 +69,7 @@ public class Book {
         params.put("author", book.authors);
         params.put("condition", book.condition);
         params.put("owner", book.ownerID);
+        params.put("city", book.city);
 
         Server.post("update", params, new JsonHttpResponseHandler() {
             @Override
@@ -207,6 +190,7 @@ public class Book {
             b.description = jsonObject.getString("description");
             b.authors = jsonObject.getString("author");
             b.condition = jsonObject.getInt("condition");
+            b.city = jsonObject.getString("city");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -232,9 +216,9 @@ public class Book {
                 continue;
             }
 
-            Book business = Book.fromJson(bookJson);
-            if (business != null) {
-                books.add(business);
+            Book book = Book.fromJson(bookJson);
+            if (book != null) {
+                books.add(book);
             }
         }
 
@@ -311,4 +295,44 @@ public class Book {
     public String toString() {
         return "Book " + this.id + " title: " + this.title;
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    // упаковываем объект в Parcel
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(id);
+        parcel.writeString(city);
+        parcel.writeString(ownerID);
+        parcel.writeString(description);
+        parcel.writeString(title);
+        parcel.writeString(authors);
+        parcel.writeString(coverUrl);
+        parcel.writeInt(condition);
+
+    }
+
+    public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
+        // распаковываем объект из Parcel
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
+    private Book(Parcel parcel) {
+        id = parcel.readString();
+        city = parcel.readString();
+        ownerID = parcel.readString();
+        description = parcel.readString();
+        title = parcel.readString();
+        authors = parcel.readString();
+        coverUrl = parcel.readString();
+        condition = parcel.readInt();
+    }
+
 }
