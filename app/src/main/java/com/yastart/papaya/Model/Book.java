@@ -1,5 +1,8 @@
 package com.yastart.papaya.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 

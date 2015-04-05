@@ -8,11 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-=======
-import android.widget.EditText;
 import android.widget.Toast;
->>>>>>> 250d97393e05d3c616c0007b2c2ea79ed19208f6
 
 import com.yastart.papaya.Model.Book;
 import com.yastart.papaya.R;
@@ -41,7 +37,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
         search = view.findViewById(R.id.find_books_layout);
 
-        ArrayList<Book> books = new ArrayList<>();
+        ArrayList<Book> Books = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Book book = new Book();
             book.setTitle("Заголовок" + String.valueOf(i));
